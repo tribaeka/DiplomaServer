@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,6 +23,8 @@ public class Company {
     private String siteUrl;
     private int size;
     private String city;
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "companiesContact", fetch = FetchType.LAZY)
     private Set<Contact> contactSet;
+    @OneToMany(mappedBy = "companiesJob", fetch = FetchType.LAZY)
+    private Set<Job> jobSet = new HashSet<>();
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
@@ -13,15 +14,12 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Contact {
+public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long contactId;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phone;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "companiesContact")
-    private Company companiesContact;
+    private Long locationId;
+    private String name;
+    private String imagePath;
+    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
+    private Set<Job> jobSet;
 }

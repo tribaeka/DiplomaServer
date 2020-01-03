@@ -4,8 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -19,5 +23,19 @@ public class Job {
     private Long jobId;
     private String title;
     private String description;
-    private String postDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "jobLocation")
+    private Location location;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "skillsForJob",
+            joinColumns = { @JoinColumn(name = "jobId") },
+            inverseJoinColumns = { @JoinColumn(name = "skillId") }
+    )
+    private Set<Skill> jobSkillSet = new HashSet<>();
+    @CreatedDate
+    private LocalDate postDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "companiesJob")
+    private Company companiesJob;
 }

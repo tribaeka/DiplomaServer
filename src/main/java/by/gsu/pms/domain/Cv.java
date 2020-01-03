@@ -27,7 +27,7 @@ public class Cv {
             joinColumns = { @JoinColumn(name = "cvId") },
             inverseJoinColumns = { @JoinColumn(name = "skillId") }
     )
-    private Set<Skill> skillSet = new HashSet<>();
+    private Set<Skill> cvSkillSet = new HashSet<>();
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usersCv")
     private User user;
