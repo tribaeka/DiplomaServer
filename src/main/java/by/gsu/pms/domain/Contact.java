@@ -13,11 +13,15 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Job {
+public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long jobId;
-    private String title;
-    private String description;
-    private String postDate;
+    private Long contactId;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "companyContact")
+    private Company company;
 }

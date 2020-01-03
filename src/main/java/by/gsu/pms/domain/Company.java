@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
@@ -13,11 +14,14 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Job {
+public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long jobId;
-    private String title;
-    private String description;
-    private String postDate;
+    private Long companyId;
+    private String name;
+    private String siteUrl;
+    private int size;
+    private String city;
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    private Set<Contact> contactSet;
 }

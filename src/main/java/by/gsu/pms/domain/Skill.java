@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -13,11 +15,11 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Job {
+public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long jobId;
-    private String title;
-    private String description;
-    private String postDate;
+    private Long skillId;
+    private String name;
+    @ManyToMany(mappedBy = "skillSet")
+    private Set<Cv> cvSet = new HashSet<>();
 }
