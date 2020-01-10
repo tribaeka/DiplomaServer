@@ -21,8 +21,7 @@ public class Company {
     private Long companyId;
     private String name;
     private String siteUrl;
-    private int size;
-    private String city;
+    private String size;
     @OneToMany(mappedBy = "companiesContact", fetch = FetchType.LAZY)
     private Set<Contact> contactSet;
     @OneToMany(mappedBy = "companiesJob", fetch = FetchType.LAZY)

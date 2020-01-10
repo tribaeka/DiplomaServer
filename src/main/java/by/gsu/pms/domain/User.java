@@ -22,8 +22,7 @@ public class User {
     private String fullName;
     private String email;
     private String phone;
-    private String address;
-    private String status;
+    private boolean active;
     private String password;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Cv> cvSet = new HashSet<>();
