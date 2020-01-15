@@ -22,8 +22,8 @@ public class Company {
     private String name;
     private String siteUrl;
     private String size;
-    @OneToMany(mappedBy = "companiesContact", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "companiesContact", fetch = FetchType.EAGER)
     private Set<Contact> contactSet;
-    @OneToMany(mappedBy = "companiesJob", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "companiesJob", fetch = FetchType.EAGER)
     private Set<Job> jobSet = new HashSet<>();
 }

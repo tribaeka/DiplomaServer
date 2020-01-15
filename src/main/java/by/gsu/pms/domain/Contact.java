@@ -21,7 +21,7 @@ public class Contact {
     private String lastName;
     private String email;
     private String phone;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "companiesContact")
     private Company companiesContact;
 }

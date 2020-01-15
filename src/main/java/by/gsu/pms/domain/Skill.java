@@ -20,8 +20,8 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long skillId;
     private String name;
-    @ManyToMany(mappedBy = "cvSkillSet")
+    @ManyToMany(mappedBy = "cvSkillSet", fetch = FetchType.EAGER)
     private Set<Cv> cvSet = new HashSet<>();
-    @ManyToMany(mappedBy = "jobSkillSet")
+    @ManyToMany(mappedBy = "jobSkillSet", fetch = FetchType.EAGER)
     private Set<Job> jobSet = new HashSet<>();
 }

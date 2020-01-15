@@ -20,6 +20,6 @@ public class Location {
     private Long locationId;
     private String name;
     private String imagePath;
-    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
     private Set<Job> jobSet;
 }

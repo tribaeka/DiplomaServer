@@ -21,14 +21,14 @@ public class Cv {
     private Long cvId;
     private String title;
     private String filePath;
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(
             name = "skillsForCv",
             joinColumns = { @JoinColumn(name = "cvId") },
             inverseJoinColumns = { @JoinColumn(name = "skillId") }
     )
     private Set<Skill> cvSkillSet = new HashSet<>();
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usersCv")
     private User user;
 }

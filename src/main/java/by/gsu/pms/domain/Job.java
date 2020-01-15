@@ -23,10 +23,10 @@ public class Job {
     private Long jobId;
     private String title;
     private String description;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "jobLocation")
     private Location location;
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(
             name = "skillsForJob",
             joinColumns = { @JoinColumn(name = "jobId") },
@@ -35,7 +35,7 @@ public class Job {
     private Set<Skill> jobSkillSet = new HashSet<>();
     @CreatedDate
     private LocalDate postDate;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "companiesJob")
     private Company companiesJob;
 }
