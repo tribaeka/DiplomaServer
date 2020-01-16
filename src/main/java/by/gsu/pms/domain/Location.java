@@ -1,5 +1,6 @@
 package by.gsu.pms.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class Location {
     private Long locationId;
     private String name;
     private String imagePath;
-    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy="location")
     private Set<Job> jobSet;
 }

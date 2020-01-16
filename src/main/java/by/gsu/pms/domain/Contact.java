@@ -1,5 +1,6 @@
 package by.gsu.pms.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Contact {
     private String lastName;
     private String email;
     private String phone;
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "companiesContact")
     private Company companiesContact;

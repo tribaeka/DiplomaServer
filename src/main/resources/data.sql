@@ -113,11 +113,11 @@ INSERT INTO diploma.skills_for_cv (cv_id, skill_id) VALUES (5, 16);
 INSERT INTO diploma.skills_for_cv (cv_id, skill_id) VALUES (5, 17);
 
 
-INSERT INTO diploma.job (job_id, title, description, post_date, companies_job, job_location) VALUES (1, 'Midlle Java Developer', 'description for Midlle Java Developer', null, 1, 1);
-INSERT INTO diploma.job (job_id, title, description, post_date, companies_job, job_location) VALUES (2, 'Front-end Developer', 'description for Front-end Developer', null, 2, 2);
-INSERT INTO diploma.job (job_id, title, description, post_date, companies_job, job_location) VALUES (3, 'Python Developer', 'description for Python Developer', null, 3, 3);
-INSERT INTO diploma.job (job_id, title, description, post_date, companies_job, job_location) VALUES (4, 'Senior Front-end Developer', 'description for Senior Front-end Developer', null, 4, 4);
-INSERT INTO diploma.job (job_id, title, description, post_date, companies_job, job_location) VALUES (5, 'Junior Java Developer', 'description for Juniour Java Developer', null, 5, 5);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location) VALUES (1, 'description for Midlle Java Developer', '2020-01-15', 'Midlle Java Developer', 1, 1);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location) VALUES (2, 'description for Front-end Developer', '2020-01-15', 'Front-end Developer', 2, 2);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location) VALUES (3, 'description for Python Developer', '2020-01-15', 'Python Developer', 3, 3);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location) VALUES (4, 'description for Senior Front-end Developer', '2020-01-15', 'Senior Front-end Developer', 4, 4);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location) VALUES (5, 'description for Juniour Java Developer', '2020-01-15', 'Junior Java Developer', 5, 5);
 
 
 INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (1, 1);

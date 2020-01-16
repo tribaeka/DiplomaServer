@@ -1,9 +1,7 @@
 package by.gsu.pms.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -24,6 +22,7 @@ public class Company {
     private String size;
     @OneToMany(mappedBy = "companiesContact", fetch = FetchType.EAGER)
     private Set<Contact> contactSet;
+    @JsonIgnore
     @OneToMany(mappedBy = "companiesJob", fetch = FetchType.EAGER)
     private Set<Job> jobSet = new HashSet<>();
 }
