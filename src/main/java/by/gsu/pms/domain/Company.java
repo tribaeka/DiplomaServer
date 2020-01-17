@@ -25,4 +25,5 @@ public class Company {
     @JsonIgnore
     @OneToMany(mappedBy = "companiesJob", fetch = FetchType.EAGER)
     private Set<Job> jobSet = new HashSet<>();
+    private String logoPath;
 }
