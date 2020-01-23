@@ -2,6 +2,7 @@ package by.gsu.pms.controller;
 
 import by.gsu.pms.domain.Job;
 import by.gsu.pms.repo.JobRepo;
+import by.gsu.pms.search.JobSearch;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,29 @@ import java.util.List;
 public class JobController {
     private ObjectMapper mapper = new ObjectMapper();
     private final JobRepo jobRepo;
+    private final JobSearch jobSearch;
+
 
     @Autowired
-    public JobController(JobRepo jobRepo) {
+    public JobController(JobRepo jobRepo, JobSearch jobSearch) {
         this.jobRepo = jobRepo;
+        this.jobSearch = jobSearch;
+    }
+
+    @GetMapping(params = "query")
+    public List<Job> executeSearch(@RequestParam(name = "query") String query) {
+        if (query.isEmpty()) {
+            return jobRepo.findAll();
+        }
+
+        List<Job> searchResults = null;
+        try {
+            searchResults = jobSearch.search(query);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return searchResults;
     }
 
     @GetMapping
