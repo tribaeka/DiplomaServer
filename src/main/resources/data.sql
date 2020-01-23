@@ -144,8 +144,11 @@ INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, j
 
 
 INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (1, 1);
+INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (2, 1);
 INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (1, 2);
+INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (3, 2);
 INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (2, 3);
+INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (4, 3);
 INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (2, 4);
 INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (3, 5);
 INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (3, 6);

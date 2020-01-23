@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -18,7 +20,7 @@ public class JobController {
     private ObjectMapper mapper = new ObjectMapper();
     private final JobRepo jobRepo;
     private final JobSearch jobSearch;
-
+    private Predicate<String> isFullSearch = (query -> query.isEmpty() || query.equals("*"));
 
     @Autowired
     public JobController(JobRepo jobRepo, JobSearch jobSearch) {
@@ -26,20 +28,20 @@ public class JobController {
         this.jobSearch = jobSearch;
     }
 
-    @GetMapping(params = "query")
+    @GetMapping("search")
     public List<Job> executeSearch(@RequestParam(name = "query") String query) {
-        if (query.isEmpty()) {
-            return jobRepo.findAll();
-        }
+        return isFullSearch.test(query) ?
+                jobRepo.findAll() :
+                jobSearch.search(query);
+    }
 
-        List<Job> searchResults = null;
-        try {
-            searchResults = jobSearch.search(query);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return searchResults;
+    @GetMapping("search/skill")
+    public List<Job> executeSearchBySkill(@RequestParam(name = "skill") String searchSkill) {
+        return jobRepo.findAll().stream()
+                .filter(job -> job.getJobSkillSet()
+                        .stream()
+                        .anyMatch(skill -> skill.getName().equalsIgnoreCase(searchSkill)))
+                .collect(Collectors.toList());
     }
 
     @GetMapping
