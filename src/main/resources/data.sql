@@ -113,7 +113,7 @@ INSERT INTO diploma.skills_for_cv (cv_id, skill_id) VALUES (5, 16);
 INSERT INTO diploma.skills_for_cv (cv_id, skill_id) VALUES (5, 17);
 
 
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location) VALUES (1, '<p>We’re looking for great engineers with diverse backgrounds. We need people that can fill hybrid roles with different emphases on the wide context of product development. We don’t have predefined positions: instead, we invite you to come talk to us about your skills, experience, ambitions, and dream role. We hope to find exceptional people to do exceptional work with us, and we believe it’s important that we define your role and path to our mutual growth together.</p>
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary) VALUES (1, '<p>We’re looking for great engineers with diverse backgrounds. We need people that can fill hybrid roles with different emphases on the wide context of product development. We don’t have predefined positions: instead, we invite you to come talk to us about your skills, experience, ambitions, and dream role. We hope to find exceptional people to do exceptional work with us, and we believe it’s important that we define your role and path to our mutual growth together.</p>
       <p>Reaktor is a hybrid partner for all things future. We reimagine businesses, and we design and build tomorrow’s digital products. Our full range of consultancy and agency services include expertise from high-level business consulting, to hands-on service and product design and development, to branding and marketing.</p>
       <p>We believe in technology-agnostic product thinking, defined only by finding meaningful solutions to challenging problems. Your passion should be the same as ours: unmatched execution of those solutions. We structure, create, iterate, and reinvent, delivering tangible value faster than anyone in the world.</p>
       <p>What we can offer you:</p>
@@ -136,11 +136,11 @@ INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, j
         <li>5+ years of real-world experience in building digital products and services.</li>
         <li>Authorization to work in the United States.</li>
       </ul>
-      <p>We invite you to share details of any open source projects, your GitHub profile, and most importantly, your personality. Be original, not official.</p>', '2020-01-15', 'Midlle Java Developer', 1, 1);
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location) VALUES (2, 'description for Front-end Developer', '2020-01-15', 'Front-end Developer', 2, 2);
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location) VALUES (3, 'description for Python Developer', '2020-01-15', 'Python Developer', 3, 3);
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location) VALUES (4, 'description for Senior Front-end Developer', '2020-01-15', 'Senior Front-end Developer', 4, 4);
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location) VALUES (5, 'description for Juniour Java Developer', '2020-01-15', 'Junior Java Developer', 5, 5);
+      <p>We invite you to share details of any open source projects, your GitHub profile, and most importantly, your personality. Be original, not official.</p>', '2020-01-15', 'Midlle Java Developer', 1, 1, 800);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary) VALUES (2, 'description for Front-end Developer', '2020-01-15', 'Front-end Developer', 2, 2, 750);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary) VALUES (3, 'description for Python Developer', '2020-01-15', 'Python Developer', 3, 3, 900);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary) VALUES (4, 'description for Senior Front-end Developer', '2020-01-15', 'Senior Front-end Developer', 4, 4, 1300);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary) VALUES (5, 'description for Juniour Java Developer', '2020-01-15', 'Junior Java Developer', 5, 5, 550);
 
 
 INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (1, 1);

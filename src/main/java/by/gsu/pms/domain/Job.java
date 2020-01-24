@@ -43,4 +43,5 @@ public class Job {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "companiesJob")
     private Company companiesJob;
+    private int salary;
 }
