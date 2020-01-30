@@ -3,7 +3,7 @@ package by.gsu.pms.domain;
 import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
+
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -13,7 +13,6 @@ import java.util.Set;
 
 @Entity
 @Table
-@Indexed
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,7 +24,6 @@ public class Job {
     private Long jobId;
     @Field
     private String title;
-    @Field
     @Type(type="text")
     private String description;
     @ManyToOne

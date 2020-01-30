@@ -2,7 +2,7 @@ package by.gsu.pms.controller;
 
 import by.gsu.pms.domain.Job;
 import by.gsu.pms.repo.JobRepo;
-import by.gsu.pms.search.JobSearch;
+import by.gsu.pms.service.JobSearchService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +19,11 @@ import java.util.stream.Collectors;
 public class JobController {
     private ObjectMapper mapper = new ObjectMapper();
     private final JobRepo jobRepo;
-    private final JobSearch jobSearch;
+    private final JobSearchService jobSearch;
     private Predicate<String> isFullSearch = (query -> query.isEmpty() || query.equals("*"));
 
     @Autowired
-    public JobController(JobRepo jobRepo, JobSearch jobSearch) {
+    public JobController(JobRepo jobRepo, JobSearchService jobSearch) {
         this.jobRepo = jobRepo;
         this.jobSearch = jobSearch;
     }

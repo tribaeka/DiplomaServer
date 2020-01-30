@@ -136,11 +136,11 @@ INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, j
         <li>5+ years of real-world experience in building digital products and services.</li>
         <li>Authorization to work in the United States.</li>
       </ul>
-      <p>We invite you to share details of any open source projects, your GitHub profile, and most importantly, your personality. Be original, not official.</p>', '2020-01-15', 'Midlle Java Developer', 1, 1, 800);
+      <p>We invite you to share details of any open source projects, your GitHub profile, and most importantly, your personality. Be original, not official.</p>', '2020-01-20', 'Midlle Java Developer', 1, 1, 800);
 INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary) VALUES (2, 'description for Front-end Developer', '2020-01-15', 'Front-end Developer', 2, 2, 750);
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary) VALUES (3, 'description for Python Developer', '2020-01-15', 'Python Developer', 3, 3, 900);
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary) VALUES (4, 'description for Senior Front-end Developer', '2020-01-15', 'Senior Front-end Developer', 4, 4, 1300);
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary) VALUES (5, 'description for Juniour Java Developer', '2020-01-15', 'Junior Java Developer', 5, 5, 550);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary) VALUES (3, 'description for Python Developer', '2020-01-10', 'Python Developer', 3, 3, 900);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary) VALUES (4, 'description for Senior Front-end Developer', '2020-01-25', 'Senior Front-end Developer', 4, 4, 1300);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary) VALUES (5, 'description for Juniour Java Developer', '2020-01-05', 'Junior Java Developer', 5, 5, 550);
 
 
 INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (1, 1);

@@ -5,15 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table
-@Indexed
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,10 +19,14 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long locationId;
-    @Field
     private String name;
     private String imagePath;
     @JsonIgnore
     @OneToMany(mappedBy="location")
     private Set<Job> jobSet;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
