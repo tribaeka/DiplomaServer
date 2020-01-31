@@ -35,15 +35,6 @@ public class JobController {
                 jobSearch.search(query);
     }
 
-    @GetMapping("search/skill")
-    public List<Job> executeSearchBySkill(@RequestParam(name = "skill") String searchSkill) {
-        return jobRepo.findAll().stream()
-                .filter(job -> job.getJobSkillSet()
-                        .stream()
-                        .anyMatch(skill -> skill.getName().equalsIgnoreCase(searchSkill)))
-                .collect(Collectors.toList());
-    }
-
     @GetMapping
     public List<Job> list(){
         return jobRepo.findAll();
