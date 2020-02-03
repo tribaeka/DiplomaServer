@@ -1,9 +1,7 @@
 package by.gsu.pms.controller;
 
-import by.gsu.pms.repo.CompanyRepo;
-import by.gsu.pms.repo.JobRepo;
-import by.gsu.pms.repo.LocationRepo;
-import by.gsu.pms.repo.SkillRepo;
+import by.gsu.pms.domain.Experience;
+import by.gsu.pms.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,13 +20,16 @@ public class UtilController {
     private final SkillRepo skillRepo;
     private final CompanyRepo companyRepo;
     private final LocationRepo locationRepo;
+    private final ExperienceRepo experienceRepo;
 
     @Autowired
-    public UtilController(JobRepo jobRepo, SkillRepo skillRepo, CompanyRepo companyRepo, LocationRepo locationRepo) {
+    public UtilController(JobRepo jobRepo, SkillRepo skillRepo, CompanyRepo companyRepo, LocationRepo locationRepo,
+                          ExperienceRepo experienceRepo) {
         this.jobRepo = jobRepo;
         this.skillRepo = skillRepo;
         this.companyRepo = companyRepo;
         this.locationRepo = locationRepo;
+        this.experienceRepo = experienceRepo;
     }
 
     @GetMapping("autocomplete")
@@ -41,6 +42,11 @@ public class UtilController {
         locationRepo.findAll().forEach(location -> result.add(location.getName()));
 
         return result;
+    }
+
+    @GetMapping("experiences")
+    public List<Experience> getExperiences() {
+        return experienceRepo.findAll();
     }
 
 }

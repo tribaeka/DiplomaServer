@@ -42,4 +42,7 @@ public class Job {
     @JoinColumn(name = "companiesJob")
     private Company companiesJob;
     private int salary;
+    @ManyToOne
+    @JoinColumn(name="job_experience", nullable=false)
+    private Experience experience;
 }
