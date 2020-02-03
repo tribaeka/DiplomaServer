@@ -31,23 +31,23 @@ public class JobSearchService {
 
         if (isAnyMatchInTitle(jobRepo.findAll(), query)){
             resultInTitle = jobRepo.findAll().stream()
-                    .filter(job -> job.getTitle().contains(query))
+                    .filter(job -> containsIgnoreCase(job.getTitle(), query))
                     .collect(Collectors.toList());
         }
         if (isAnyMatchInLocation(jobRepo.findAll(), query)) {
             resultInLocation = jobRepo.findAll().stream()
-                    .filter(job -> job.getLocation().getName().contains(query))
+                    .filter(job -> containsIgnoreCase(job.getLocation().getName(), query))
                     .collect(Collectors.toList());
         }
         if (isAnyMatchInCompany(jobRepo.findAll(), query)) {
             resultInCompany = jobRepo.findAll().stream()
-                    .filter(job -> job.getCompaniesJob().getName().contains(query))
+                    .filter(job -> containsIgnoreCase(job.getCompaniesJob().getName(), query))
                     .collect(Collectors.toList());
         }
         if (isAnyMatchInSkills(jobRepo.findAll(), query)) {
             resultInSkills = jobRepo.findAll().stream()
                     .filter(job -> job.getJobSkillSet().stream()
-                            .anyMatch(skill -> skill.getName().contains(query)))
+                            .anyMatch(skill -> containsIgnoreCase(skill.getName(), query)))
                     .collect(Collectors.toList());
         }
         return Stream.of(resultInTitle, resultInLocation, resultInCompany, resultInSkills)
@@ -55,46 +55,6 @@ public class JobSearchService {
                 .distinct()
                 .sorted(Comparator.comparing(Job::getPostDate).reversed())
                 .collect(Collectors.toList());
-    }
-
-    private boolean isAnyMatchInTitle(List<Job> jobs, String query) {
-        return jobs.stream().anyMatch(job -> job.getTitle().contains(query));
-    }
-
-    private boolean isAnyMatchInTitle(List<Job> jobs, List<String> query) {
-        return jobs.stream().anyMatch(job -> query.stream()
-                .anyMatch(subQuery -> job.getTitle().contains(subQuery)));
-    }
-
-    private boolean isAnyMatchInLocation(List<Job> jobs, String query) {
-        return jobs.stream().anyMatch(job -> job.getLocation().getName().contains(query));
-    }
-
-    private boolean isAnyMatchInLocation(List<Job> jobs, List<String> query) {
-        return jobs.stream().anyMatch(job -> query.stream()
-                .anyMatch(subQuery -> job.getLocation().getName().contains(subQuery)));
-    }
-
-    private boolean isAnyMatchInCompany(List<Job> jobs, String query) {
-        return jobs.stream().anyMatch(job -> job.getCompaniesJob().getName().contains(query));
-    }
-
-    private boolean isAnyMatchInCompany(List<Job> jobs, List<String> query) {
-        return jobs.stream().anyMatch(job -> query.stream()
-                .anyMatch(subQuery -> job.getCompaniesJob().getName().contains(subQuery)));    }
-
-    private boolean isAnyMatchInSkills(List<Job> jobs, String query) {
-        return jobs.stream()
-                .anyMatch(job -> job.getJobSkillSet().stream()
-                        .anyMatch(skill -> skill.getName().contains(query))
-                );
-    }
-
-    private boolean isAnyMatchInSkills(List<Job> jobs, List<String> query) {
-        return jobs.stream()
-                .anyMatch(job -> job.getJobSkillSet().stream()
-                        .anyMatch(skill -> query.stream()
-                                .anyMatch(subQuery -> skill.getName().contains(subQuery))));
     }
 
     private List<Job> executeSearchWithMultiWords(List<String> query) {
@@ -106,26 +66,26 @@ public class JobSearchService {
         if (isAnyMatchInTitle(jobRepo.findAll(), query)){
             resultInTitle = jobRepo.findAll().stream()
                     .filter(job -> query.stream()
-                            .anyMatch(subQuery -> job.getTitle().contains(subQuery)))
+                            .anyMatch(subQuery -> containsIgnoreCase(job.getTitle(), subQuery)))
                     .collect(Collectors.toList());
         }
         if (isAnyMatchInLocation(jobRepo.findAll(), query)) {
             resultInLocation = jobRepo.findAll().stream()
                     .filter(job -> query.stream()
-                            .anyMatch(subQuery -> job.getLocation().getName().contains(subQuery)))
+                            .anyMatch(subQuery -> containsIgnoreCase(job.getLocation().getName(), subQuery)))
                     .collect(Collectors.toList());
         }
         if (isAnyMatchInCompany(jobRepo.findAll(), query)) {
             resultInCompany = jobRepo.findAll().stream()
                     .filter(job -> query.stream()
-                            .anyMatch(subQuery -> job.getCompaniesJob().getName().contains(subQuery)))
+                            .anyMatch(subQuery -> containsIgnoreCase(job.getCompaniesJob().getName(), subQuery)))
                     .collect(Collectors.toList());
         }
         if (isAnyMatchInSkills(jobRepo.findAll(), query)) {
             resultInSkills = jobRepo.findAll().stream()
                     .filter(job -> job.getJobSkillSet().stream()
                             .anyMatch(skill -> query.stream()
-                                    .anyMatch(subQuery -> skill.getName().contains(subQuery))))
+                                    .anyMatch(subQuery -> containsIgnoreCase(skill.getName(), subQuery))))
                     .collect(Collectors.toList());
         }
         return Stream.of(resultInTitle, resultInLocation, resultInCompany, resultInSkills)
@@ -133,5 +93,49 @@ public class JobSearchService {
                 .distinct()
                 .sorted(Comparator.comparing(Job::getPostDate).reversed())
                 .collect(Collectors.toList());
+    }
+
+    private boolean isAnyMatchInTitle(List<Job> jobs, String query) {
+        return jobs.stream().anyMatch(job -> containsIgnoreCase(job.getTitle(), query));
+    }
+
+    private boolean isAnyMatchInTitle(List<Job> jobs, List<String> query) {
+        return jobs.stream().anyMatch(job -> query.stream()
+                .anyMatch(subQuery -> containsIgnoreCase(job.getTitle(), subQuery)));
+    }
+
+    private boolean isAnyMatchInLocation(List<Job> jobs, String query) {
+        return jobs.stream().anyMatch(job -> containsIgnoreCase(job.getLocation().getName(), query));
+    }
+
+    private boolean isAnyMatchInLocation(List<Job> jobs, List<String> query) {
+        return jobs.stream().anyMatch(job -> query.stream()
+                .anyMatch(subQuery -> containsIgnoreCase(job.getLocation().getName(), subQuery)));
+    }
+
+    private boolean isAnyMatchInCompany(List<Job> jobs, String query) {
+        return jobs.stream().anyMatch(job -> containsIgnoreCase(job.getCompaniesJob().getName(), query));
+    }
+
+    private boolean isAnyMatchInCompany(List<Job> jobs, List<String> query) {
+        return jobs.stream().anyMatch(job -> query.stream()
+                .anyMatch(subQuery -> containsIgnoreCase(job.getCompaniesJob().getName(), subQuery)));    }
+
+    private boolean isAnyMatchInSkills(List<Job> jobs, String query) {
+        return jobs.stream()
+                .anyMatch(job -> job.getJobSkillSet().stream()
+                        .anyMatch(skill -> containsIgnoreCase(skill.getName(), query))
+                );
+    }
+
+    private boolean isAnyMatchInSkills(List<Job> jobs, List<String> query) {
+        return jobs.stream()
+                .anyMatch(job -> job.getJobSkillSet().stream()
+                        .anyMatch(skill -> query.stream()
+                                .anyMatch(subQuery -> containsIgnoreCase(skill.getName(), subQuery))));
+    }
+
+    private boolean containsIgnoreCase(String str1, String str2) {
+        return str1.toLowerCase().contains(str2.toLowerCase());
     }
 }
