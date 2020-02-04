@@ -51,8 +51,8 @@ public class UtilController {
         return experienceRepo.findAll();
     }
 
-    @GetMapping("search-builds")
-    public Map<String, String> getSearchBuilds() {
+    @GetMapping("search-builds/job")
+    public Map<String, String> getSearchBuildsForJob() {
         return new HashMap<String, String>() {{
             put("#Angular Front-end Developer", "JavaScript Git Angular HTML CSS SASS");
             put("#React Front-end Developer", "JavaScript Git React HTML CSS SASS");
@@ -69,6 +69,11 @@ public class UtilController {
             put("for test Data Analytic", "Data Analytics MySQL Python");
             put("for test DevOps", "Docker");
         }};
+    }
+
+    @GetMapping("search-builds/cv")
+    public Map<String, String> getSearchBuildsForCv() {
+        return new HashMap<String, String>();
     }
 
 }
