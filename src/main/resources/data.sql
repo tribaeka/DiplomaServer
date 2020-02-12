@@ -28,18 +28,26 @@ INSERT INTO diploma.location (location_id, image_path, name) VALUES (8, '/img/fl
 INSERT INTO diploma.location (location_id, image_path, name) VALUES (9, '/img/flags/263-usa.png', 'Portland, Maine');
 INSERT INTO diploma.location (location_id, image_path, name) VALUES (10, '/img/flags/162-germany.png', 'Berlin');
 
+INSERT INTO diploma.role(name) VALUES('ROLE_USER');
+INSERT INTO diploma.role(name) VALUES('ROLE_MODERATOR');
+INSERT INTO diploma.role(name) VALUES('ROLE_ADMIN');
 
-INSERT INTO diploma.user (user_id, full_name, email, password, phone, active) VALUES (1, 'Darcie Wagner', 'Darcie_Wagner@gmail.com', 'dw1234', '234548865', true);
-INSERT INTO diploma.user (user_id, full_name, email, password, phone, active) VALUES (2, 'Cassidy Howe', 'Cassidy_Howe@gmail.com', 'ch1234', '350234504', true);
-INSERT INTO diploma.user (user_id, full_name, email, password, phone, active) VALUES (3, 'Ansh Corona', 'Ansh_Corona', 'ac1234', '324265065', true);
-INSERT INTO diploma.user (user_id, full_name, email, password, phone, active) VALUES (4, 'Elen Smart', 'Elen_Smart@gmail.com', 'es1234', '234324523', true);
-INSERT INTO diploma.user (user_id, full_name, email, password, phone, active) VALUES (5, 'Thalia Ballard', 'Thalia_Ballard@gmail.com', 'tb1234', '234234534', true);
-INSERT INTO diploma.user (user_id, full_name, email, password, phone, active) VALUES (6, 'Morwenna King', 'Morwenna_King@gmail.com', 'mk1234', '123141242', false);
-INSERT INTO diploma.user (user_id, full_name, email, password, phone, active) VALUES (7, 'Roshan Frey', 'Roshan_Frey@gmail.com', 'rf1234', '235086341', false);
-INSERT INTO diploma.user (user_id, full_name, email, password, phone, active) VALUES (8, 'Roberta Schaefer', 'Roberta_Schaefer@gmail.com', 'rs1234', '234523467', false);
-INSERT INTO diploma.user (user_id, full_name, email, password, phone, active) VALUES (9, 'Shelley Harding', 'Shelley_Harding', 'sh1234', '456485894', false);
-INSERT INTO diploma.user (user_id, full_name, email, password, phone, active) VALUES (10, 'Taybah House', 'Taybah_House@gmail.com', 'th1234', '083474234', false);
 
+INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (1, 'Darcie.Wagner', 'Darcie_Wagner@gmail.com', 'dw1234', '234548865', true);
+INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (2, 'Cassidy.Howe', 'Cassidy_Howe@gmail.com', 'ch1234', '350234504', true);
+INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (3, 'Ansh.Corona', 'Ansh_Corona', 'ac1234', '324265065', true);
+INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (4, 'Elen.Smart', 'Elen_Smart@gmail.com', 'es1234', '234324523', true);
+INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (5, 'Thalia.Ballard', 'Thalia_Ballard@gmail.com', 'tb1234', '234234534', true);
+INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (6, 'Morwenna.King', 'Morwenna_King@gmail.com', 'mk1234', '123141242', false);
+INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (7, 'Roshan.Frey', 'Roshan_Frey@gmail.com', 'rf1234', '235086341', false);
+INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (8, 'Roberta.Schaefer', 'Roberta_Schaefer@gmail.com', 'rs1234', '234523467', false);
+INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (9, 'Shelley.Harding', 'Shelley_Harding', 'sh1234', '456485894', false);
+INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (10, 'Taybah.House', 'Taybah_House@gmail.com', 'th1234', '083474234', false);
+
+INSERT INTO diploma.user_roles (user_id, role_id) VALUES (1, 1);
+INSERT INTO diploma.user_roles (user_id, role_id) VALUES (2, 2);
+INSERT INTO diploma.user_roles (user_id, role_id) VALUES (3, 3);
+INSERT INTO diploma.user_roles (user_id, role_id) VALUES (4, 1);
 
 INSERT INTO diploma.cv (cv_id, title, file_path, users_cv) VALUES (1, 'Junior Java Developer', '/static/cv_default.pdf', 1);
 INSERT INTO diploma.cv (cv_id, title, file_path, users_cv) VALUES (2, 'Front-end Developer', '/static/cv_default.pdf', 2);

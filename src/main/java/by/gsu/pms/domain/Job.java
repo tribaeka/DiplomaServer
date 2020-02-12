@@ -2,7 +2,6 @@ package by.gsu.pms.domain;
 
 import lombok.*;
 import org.hibernate.annotations.Type;
-import org.hibernate.search.annotations.Field;
 
 import org.springframework.data.annotation.CreatedDate;
 
@@ -22,7 +21,6 @@ public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long jobId;
-    @Field
     private String title;
     @Type(type="text")
     private String description;
