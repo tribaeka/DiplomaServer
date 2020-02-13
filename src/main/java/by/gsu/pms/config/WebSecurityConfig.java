@@ -66,5 +66,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
-    // todo auth source -> https://bezkoder.com/angular-spring-boot-jwt-auth/#Demo
+    // auth source -> https://bezkoder.com/angular-spring-boot-jwt-auth/#Demo
 }
