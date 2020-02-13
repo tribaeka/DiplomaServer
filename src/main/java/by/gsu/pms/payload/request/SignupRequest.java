@@ -22,8 +22,6 @@ public class SignupRequest {
     private Set<String> role;
 
     @NotBlank
-    @Size(min = 6, max = 40)
+    @Size(min = 6, max = 20)
     private String password;
-    @NotBlank
-    private String phone;
 }
