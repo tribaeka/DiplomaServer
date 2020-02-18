@@ -20,11 +20,11 @@ public class Cv {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cvId;
     private String title;
-    private String filePath;
+    private String fileName;
     @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(
             name = "skillsForCv",
-            joinColumns = { @JoinColumn(name = "cvId") },
+            joinColumns = {@JoinColumn(name = "cvId") },
             inverseJoinColumns = { @JoinColumn(name = "skillId") }
     )
     private Set<Skill> cvSkillSet = new HashSet<>();

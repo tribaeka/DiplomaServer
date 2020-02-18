@@ -38,7 +38,6 @@ public class UtilController {
     public List<String> getAutocompleteDictionary () {
         List<String> result = new ArrayList<>();
 
-        jobRepo.findAll().forEach(job -> result.add(job.getTitle()));
         skillRepo.findAll().forEach(skill -> result.add(skill.getName()));
         companyRepo.findAll().forEach(company -> result.add(company.getName()));
         locationRepo.findAll().forEach(location -> result.add(location.getName()));
