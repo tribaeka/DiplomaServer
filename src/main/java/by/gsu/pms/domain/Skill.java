@@ -29,4 +29,8 @@ public class Skill {
     public String toString() {
         return name;
     }
+
+    public Skill (String name) {
+        this.name = name;
+    }
 }
