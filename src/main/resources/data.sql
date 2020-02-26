@@ -65,10 +65,10 @@ INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (10, '/static/
 
 
 INSERT INTO diploma.skill (skill_id, name) VALUES (1, 'Java');
-INSERT INTO diploma.skill (skill_id, name) VALUES (2, 'Java EE');
+INSERT INTO diploma.skill (skill_id, name) VALUES (2, 'JavaEE');
 INSERT INTO diploma.skill (skill_id, name) VALUES (3, 'Spring');
-INSERT INTO diploma.skill (skill_id, name) VALUES (4, 'Hibernate ORM');
-INSERT INTO diploma.skill (skill_id, name) VALUES (5, 'Unit Testing');
+INSERT INTO diploma.skill (skill_id, name) VALUES (4, 'HibernateORM');
+INSERT INTO diploma.skill (skill_id, name) VALUES (5, 'UnitTesting');
 INSERT INTO diploma.skill (skill_id, name) VALUES (6, 'JavaScript');
 INSERT INTO diploma.skill (skill_id, name) VALUES (7, 'HTML');
 INSERT INTO diploma.skill (skill_id, name) VALUES (8, 'CSS');
@@ -84,7 +84,7 @@ INSERT INTO diploma.skill (skill_id, name) VALUES (17, 'Angularjs');
 INSERT INTO diploma.skill (skill_id, name) VALUES (18, 'Nodejs');
 INSERT INTO diploma.skill (skill_id, name) VALUES (19, 'Express');
 INSERT INTO diploma.skill (skill_id, name) VALUES (20, 'Python');
-INSERT INTO diploma.skill (skill_id, name) VALUES (21, 'Machine Learning');
+INSERT INTO diploma.skill (skill_id, name) VALUES (21, 'MachineLearning');
 INSERT INTO diploma.skill (skill_id, name) VALUES (22, 'Data Analytics');
 
 

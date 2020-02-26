@@ -1,6 +1,7 @@
 package by.gsu.pms.controller;
 
 import by.gsu.pms.domain.Experience;
+import by.gsu.pms.domain.Skill;
 import by.gsu.pms.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -34,8 +37,8 @@ public class UtilController {
         this.experienceRepo = experienceRepo;
     }
 
-    @GetMapping("autocomplete")
-    public List<String> getAutocompleteDictionary () {
+    @GetMapping("autocomplete/search")
+    public List<String> getAutocompleteSearchDictionary () {
         List<String> result = new ArrayList<>();
 
         skillRepo.findAll().forEach(skill -> result.add(skill.getName()));
@@ -43,6 +46,14 @@ public class UtilController {
         locationRepo.findAll().forEach(location -> result.add(location.getName()));
 
         return result;
+    }
+
+    @GetMapping("autocomplete/skills")
+    public List<String> getAutocompleteSkillsDictionary () {
+        return skillRepo.findAll().stream()
+                .map(Skill::getName)
+                .collect(Collectors.toList());
+
     }
 
     @GetMapping("experiences")
@@ -72,7 +83,7 @@ public class UtilController {
 
     @GetMapping("search-builds/cv")
     public Map<String, String> getSearchBuildsForCv() {
-        return new HashMap<String, String>();
+        return new HashMap<>();
     }
 
 }

@@ -27,7 +27,7 @@ public class Job {
     @ManyToOne
     @JoinColumn(name="job_location", nullable=false)
     private Location location;
-    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinTable(
             name = "skillsForJob",
             joinColumns = { @JoinColumn(name = "jobId") },
@@ -36,7 +36,7 @@ public class Job {
     private Set<Skill> jobSkillSet = new HashSet<>();
     @CreatedDate
     private LocalDate postDate;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "companiesJob")
     private Company companiesJob;
     private int salary;

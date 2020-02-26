@@ -1,8 +1,10 @@
 package by.gsu.pms.controller;
 
 import by.gsu.pms.domain.Cv;
+import by.gsu.pms.payload.response.MessageResponse;
 import by.gsu.pms.repo.CvRepo;
 import by.gsu.pms.repo.UserRepo;
+import by.gsu.pms.service.SkillService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -31,6 +36,9 @@ public class CvController {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private SkillService skillService;
 
     @Value("${cv.files.path}")
     private String cvFilesPath;
@@ -64,12 +72,27 @@ public class CvController {
     }
 
     @PostMapping
-    public Cv create(@RequestBody String jsoncv){
-        Cv cv = null;
-        try {
-            cv = mapper.readValue(jsoncv, Cv.class);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public Cv create(
+            @RequestParam("title") String cvTitle,
+            @RequestParam("skills") String skills,
+            @RequestParam("user") String userId,
+            @RequestBody MultipartFile file
+    ) throws IOException {
+        Cv cv = new Cv();
+        cv.setTitle(cvTitle);
+        cv.setCvSkillSet(skillService.restoreSkillListFromString(skills));
+        cv.setUser(userRepo.getOne(Long.parseLong(userId)));
+        if (file != null && ! file.getOriginalFilename().isEmpty()){
+            File uploadDir = new File(cvFilesPath);
+            if (!uploadDir.exists()){
+                uploadDir.mkdir();
+            }
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(cvFilesPath +"/" + resultFileName ));
+            cv.setFileName(resultFileName);
         }
         return cvRepo.save(cv);
     }
@@ -90,7 +113,9 @@ public class CvController {
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable("id") Cv cv){
+    public ResponseEntity<MessageResponse> delete(@PathVariable("id") Cv cv){
         cvRepo.delete(cv);
+        return ResponseEntity.ok(new MessageResponse("Deleted successfully!"));
+
     }
 }
