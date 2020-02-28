@@ -51,7 +51,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>by.gsu.pms.Application</mainClass>
-                    <finalName>server</finalName>
+                    <finalName>diploma</finalName>
                 </configuration>
                 <executions>
                     <execution>
