@@ -85,7 +85,7 @@ INSERT INTO diploma.skill (skill_id, name) VALUES (18, 'Nodejs');
 INSERT INTO diploma.skill (skill_id, name) VALUES (19, 'Express');
 INSERT INTO diploma.skill (skill_id, name) VALUES (20, 'Python');
 INSERT INTO diploma.skill (skill_id, name) VALUES (21, 'MachineLearning');
-INSERT INTO diploma.skill (skill_id, name) VALUES (22, 'Data Analytics');
+INSERT INTO diploma.skill (skill_id, name) VALUES (22, 'DataAnalytics');
 
 
 INSERT INTO diploma.experience (experience_id, name) VALUES (1, 'No experience');
