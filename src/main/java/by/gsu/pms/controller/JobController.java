@@ -57,15 +57,15 @@ public class JobController {
 
     @PutMapping("{id}")
     public Job update(@PathVariable("id") Job jobFromDb,
-                       @RequestBody String jsonUser
+                       @RequestBody String jsonJob
     ){
         Job job = null;
         try {
-            job = mapper.readValue(jsonUser, Job.class);
+            job = mapper.readValue(jsonJob, Job.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        BeanUtils.copyProperties(job, jobFromDb, "id");
+        BeanUtils.copyProperties(job, jobFromDb, "jobId");
 
         return jobRepo.save(jobFromDb);
     }

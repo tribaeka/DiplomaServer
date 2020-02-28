@@ -20,10 +20,10 @@ public class Company {
     private String name;
     private String siteUrl;
     private String size;
-    @OneToMany(mappedBy = "companiesContact", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "companiesContact", fetch = FetchType.LAZY)
     private Set<Contact> contactSet;
     @JsonIgnore
-    @OneToMany(mappedBy = "companiesJob", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "companiesJob", fetch = FetchType.LAZY)
     private Set<Job> jobSet = new HashSet<>();
     private String logoPath;
 

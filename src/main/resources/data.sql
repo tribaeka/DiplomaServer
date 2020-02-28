@@ -33,40 +33,42 @@ INSERT INTO diploma.role(name) VALUES('ROLE_MODERATOR');
 INSERT INTO diploma.role(name) VALUES('ROLE_ADMIN');
 
 
-INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (1, 'Darcie.Wagner', 'Darcie_Wagner@gmail.com', 'dw1234', '234548865', true);
-INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (2, 'Cassidy.Howe', 'Cassidy_Howe@gmail.com', 'ch1234', '350234504', true);
-INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (3, 'Ansh.Corona', 'Ansh_Corona', 'ac1234', '324265065', true);
-INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (4, 'Elen.Smart', 'Elen_Smart@gmail.com', 'es1234', '234324523', true);
-INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (5, 'Thalia.Ballard', 'Thalia_Ballard@gmail.com', 'tb1234', '234234534', true);
-INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (6, 'Morwenna.King', 'Morwenna_King@gmail.com', 'mk1234', '123141242', false);
-INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (7, 'Roshan.Frey', 'Roshan_Frey@gmail.com', 'rf1234', '235086341', false);
-INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (8, 'Roberta.Schaefer', 'Roberta_Schaefer@gmail.com', 'rs1234', '234523467', false);
-INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (9, 'Shelley.Harding', 'Shelley_Harding', 'sh1234', '456485894', false);
-INSERT INTO diploma.user (user_id, username, email, password, phone, active) VALUES (10, 'Taybah.House', 'Taybah_House@gmail.com', 'th1234', '083474234', false);
+INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (1, true, 'Darcie_Wagner@gmail.com', 'dw1234', '234548865', 'Darcie.Wagner');
+INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (2, true, 'Cassidy_Howe@gmail.com', 'ch1234', '350234504', 'Cassidy.Howe');
+INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (3, true, 'Ansh_Corona', 'ac1234', '324265065', 'Ansh.Corona');
+INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (4, true, 'Elen_Smart@gmail.com', 'es1234', '234324523', 'Elen.Smart');
+INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (5, true, 'Thalia_Ballard@gmail.com', 'tb1234', '234234534', 'Thalia.Ballard');
+INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (6, false, 'Morwenna_King@gmail.com', 'mk1234', '123141242', 'Morwenna.King');
+INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (7, false, 'Roshan_Frey@gmail.com', 'rf1234', '235086341', 'Roshan.Frey');
+INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (8, false, 'Roberta_Schaefer@gmail.com', 'rs1234', '234523467', 'Roberta.Schaefer');
+INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (9, false, 'Shelley_Harding', 'sh1234', '456485894', 'Shelley.Harding');
+INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (10, false, 'Taybah_House@gmail.com', 'th1234', '083474234', 'Taybah.House');
+INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (11, false, 'user@gmail.com', '$2a$14$MR848aowHq/xbmedJESEoOBUnncnG7XEscm66enVVj5b36GfU17vu', null, 'user');
+
 
 INSERT INTO diploma.user_roles (user_id, role_id) VALUES (1, 1);
 INSERT INTO diploma.user_roles (user_id, role_id) VALUES (2, 2);
 INSERT INTO diploma.user_roles (user_id, role_id) VALUES (3, 3);
 INSERT INTO diploma.user_roles (user_id, role_id) VALUES (4, 1);
 
-INSERT INTO diploma.cv (cv_id, title, file_path, users_cv) VALUES (1, 'Junior Java Developer', '/static/cv_default.pdf', 1);
-INSERT INTO diploma.cv (cv_id, title, file_path, users_cv) VALUES (2, 'Front-end Developer', '/static/cv_default.pdf', 2);
-INSERT INTO diploma.cv (cv_id, title, file_path, users_cv) VALUES (3, 'ML Engineer', '/static/cv_default.pdf', 3);
-INSERT INTO diploma.cv (cv_id, title, file_path, users_cv) VALUES (4, 'Senior Back-end Developer', '/static/cv_default.pdf', 4);
-INSERT INTO diploma.cv (cv_id, title, file_path, users_cv) VALUES (5, 'JavaScript Developer', '/static/cv_default.pdf', 5);
-INSERT INTO diploma.cv (cv_id, title, file_path, users_cv) VALUES (6, 'Full-stack Developer', '/static/cv_default.pdf', 6);
-INSERT INTO diploma.cv (cv_id, title, file_path, users_cv) VALUES (7, 'Unity Developer', '/static/cv_default.pdf', 7);
-INSERT INTO diploma.cv (cv_id, title, file_path, users_cv) VALUES (8, 'Python Developer', '/static/cv_default.pdf', 8);
-INSERT INTO diploma.cv (cv_id, title, file_path, users_cv) VALUES (9, 'Network Architect', '/static/cv_default.pdf', 9);
-INSERT INTO diploma.cv (cv_id, title, file_path, users_cv) VALUES (10, 'DevOps', '/static/cv_default.pdf', 10);
 
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (1, '/static/cv_default.pdf', 'Junior Java Developer', 1);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (2, '/static/cv_default.pdf', 'Front-end Developer', 2);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (3, '/static/cv_default.pdf', 'ML Engineer', 3);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (4, 'resume.docx', 'Senior Back-end Developer', 11);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (5, '/static/cv_default.pdf', 'JavaScript Developer', 11);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (6, '/static/cv_default.pdf', 'Full-stack Developer', 11);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (7, '/static/cv_default.pdf', 'Unity Developer', 11);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (8, '/static/cv_default.pdf', 'Python Developer', 11);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (9, '/static/cv_default.pdf', 'Network Architect', 11);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (10, '/static/cv_default.pdf', 'DevOps', 11);
 
 
 INSERT INTO diploma.skill (skill_id, name) VALUES (1, 'Java');
-INSERT INTO diploma.skill (skill_id, name) VALUES (2, 'Java EE');
+INSERT INTO diploma.skill (skill_id, name) VALUES (2, 'JavaEE');
 INSERT INTO diploma.skill (skill_id, name) VALUES (3, 'Spring');
-INSERT INTO diploma.skill (skill_id, name) VALUES (4, 'Hibernate ORM');
-INSERT INTO diploma.skill (skill_id, name) VALUES (5, 'Unit Testing');
+INSERT INTO diploma.skill (skill_id, name) VALUES (4, 'HibernateORM');
+INSERT INTO diploma.skill (skill_id, name) VALUES (5, 'UnitTesting');
 INSERT INTO diploma.skill (skill_id, name) VALUES (6, 'JavaScript');
 INSERT INTO diploma.skill (skill_id, name) VALUES (7, 'HTML');
 INSERT INTO diploma.skill (skill_id, name) VALUES (8, 'CSS');
@@ -82,13 +84,15 @@ INSERT INTO diploma.skill (skill_id, name) VALUES (17, 'Angularjs');
 INSERT INTO diploma.skill (skill_id, name) VALUES (18, 'Nodejs');
 INSERT INTO diploma.skill (skill_id, name) VALUES (19, 'Express');
 INSERT INTO diploma.skill (skill_id, name) VALUES (20, 'Python');
-INSERT INTO diploma.skill (skill_id, name) VALUES (21, 'Machine Learning');
+INSERT INTO diploma.skill (skill_id, name) VALUES (21, 'MachineLearning');
 INSERT INTO diploma.skill (skill_id, name) VALUES (22, 'Data Analytics');
+
 
 INSERT INTO diploma.experience (experience_id, name) VALUES (1, 'No experience');
 INSERT INTO diploma.experience (experience_id, name) VALUES (2, '1 to 3 years');
 INSERT INTO diploma.experience (experience_id, name) VALUES (3, '3 to 6 years');
 INSERT INTO diploma.experience (experience_id, name) VALUES (4, 'more than 6 years');
+
 
 INSERT INTO diploma.skills_for_cv (cv_id, skill_id) VALUES (1, 1);
 INSERT INTO diploma.skills_for_cv (cv_id, skill_id) VALUES (1, 2);

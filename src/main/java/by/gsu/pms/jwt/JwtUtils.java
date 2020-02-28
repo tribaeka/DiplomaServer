@@ -3,7 +3,6 @@ package by.gsu.pms.jwt;
 import java.util.Date;
 
 import by.gsu.pms.domain.UserDetailsImpl;
-import by.gsu.pms.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

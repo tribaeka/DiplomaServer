@@ -23,7 +23,7 @@ public class User {
     private boolean active;
     private String password;
     @JsonIgnore
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Cv> cvSet = new HashSet<>();
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
