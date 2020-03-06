@@ -99,14 +99,34 @@ public class CvController {
 
     @PutMapping("{id}")
     public Cv update(@PathVariable("id") Cv cvFromDb,
-                      @RequestBody String jsonCv
-    ){
-        Cv cv = null;
+                     @RequestParam("title") String cvTitle,
+                     @RequestParam("skills") String skills,
+                     @RequestParam("user") String userId,
+                     @RequestBody MultipartFile file
+    ) throws IOException {
+        Cv cv = new Cv();
+        cv.setTitle(cvTitle);
+        cv.setCvSkillSet(skillService.restoreSkillListFromString(skills));
+        cv.setUser(userRepo.getOne(Long.parseLong(userId)));
         try {
-            cv = mapper.readValue(jsonCv, Cv.class);
-        } catch (IOException e) {
-            e.printStackTrace();
+            if (!cvFromDb.getFileName().equalsIgnoreCase(file.getOriginalFilename())){
+                File uploadDir = new File(cvFilesPath);
+                if (!uploadDir.exists()){
+                    uploadDir.mkdir();
+                }
+
+                String uuidFile = UUID.randomUUID().toString();
+                String resultFileName = uuidFile + "." + file.getOriginalFilename();
+
+                file.transferTo(new File(cvFilesPath +"/" + resultFileName ));
+                cv.setFileName(resultFileName);
+            } else {
+                cv.setFileName(cvFromDb.getFileName());
+            }
+        }catch (NullPointerException ex) {
+            cv.setFileName(cvFromDb.getFileName());
         }
+
         BeanUtils.copyProperties(cv, cvFromDb, "cvId");
 
         return cvRepo.save(cvFromDb);

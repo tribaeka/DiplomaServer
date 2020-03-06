@@ -16,8 +16,9 @@ public class SkillService {
 
     public Set<Skill> restoreSkillListFromString(String skills) {
         return Stream.of(skills.split(" "))
+                .sorted()
                 .map(skillName -> skillRepo.findByName(skillName)
-                        .orElse(skillRepo.save(new Skill(skillName))))
+                        .orElseGet(() -> skillRepo.save(new Skill(skillName))))
                 .collect(Collectors.toSet());
     }
 }
