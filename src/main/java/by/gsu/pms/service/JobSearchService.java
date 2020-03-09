@@ -6,13 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
 public class JobSearchService {
+    private final static List<String> JOB_RANKS = new ArrayList<>(Arrays.asList("junior", "middle", "senior"));
     private final JobRepo jobRepo;
     private static final String QUERY_SEPARATOR = " ";
+    private Predicate<String> findJobRank = query ->
+            JOB_RANKS.stream().anyMatch(rank -> query.equalsIgnoreCase(rank) || query.contains(rank));
     @Autowired
     public JobSearchService(JobRepo jobRepo) {
         this.jobRepo = jobRepo;
@@ -58,17 +62,30 @@ public class JobSearchService {
     }
 
     private List<Job> executeSearchWithMultiWords(List<String> query) {
+        List<String> queryRanks = query.stream().filter(findJobRank).collect(Collectors.toList());
         List<Job> resultInTitle = new ArrayList<>();
         List<Job> resultInLocation = new ArrayList<>();
         List<Job> resultInCompany = new ArrayList<>();
-        List<Job> resultInSkills = new ArrayList<>();
+        List<Job> result;
 
-        if (isAnyMatchInTitle(jobRepo.findAll(), query)){
-            resultInTitle = jobRepo.findAll().stream()
+        if (!queryRanks.isEmpty() && isAnyMatchInTitle(jobRepo.findAll(), queryRanks)) {
+            List<Job> resultsInRank = jobRepo.findAll().stream()
+                    .filter(job -> queryRanks.stream()
+                            .anyMatch(subQuery -> containsIgnoreCase(job.getTitle(), subQuery)))
+                    .collect(Collectors.toList());
+            resultInTitle = resultsInRank.stream()
                     .filter(job -> query.stream()
                             .anyMatch(subQuery -> containsIgnoreCase(job.getTitle(), subQuery)))
                     .collect(Collectors.toList());
+        } else {
+            if (isAnyMatchInTitle(jobRepo.findAll(), query)){
+                resultInTitle = jobRepo.findAll().stream()
+                        .filter(job -> query.stream()
+                                .anyMatch(subQuery -> containsIgnoreCase(job.getTitle(), subQuery)))
+                        .collect(Collectors.toList());
+            }
         }
+
         if (isAnyMatchInLocation(jobRepo.findAll(), query)) {
             resultInLocation = jobRepo.findAll().stream()
                     .filter(job -> query.stream()
@@ -81,15 +98,19 @@ public class JobSearchService {
                             .anyMatch(subQuery -> containsIgnoreCase(job.getCompaniesJob().getName(), subQuery)))
                     .collect(Collectors.toList());
         }
-        if (isAnyMatchInSkills(jobRepo.findAll(), query)) {
-            resultInSkills = jobRepo.findAll().stream()
+
+        result = intesect(intesect(resultInTitle, resultInLocation), resultInCompany);
+
+        if (isAnyMatchInSkills(result, query)) {
+            List<Job> resultInSkills = result.stream()
                     .filter(job -> job.getJobSkillSet().stream()
                             .anyMatch(skill -> query.stream()
                                     .anyMatch(subQuery -> containsIgnoreCase(skill.getName(), subQuery))))
                     .collect(Collectors.toList());
+            result.addAll(resultInSkills);
         }
-        return Stream.of(resultInTitle, resultInLocation, resultInCompany, resultInSkills)
-                .flatMap(Collection::stream)
+
+        return result.stream()
                 .distinct()
                 .sorted(Comparator.comparing(Job::getPostDate).reversed())
                 .collect(Collectors.toList());
@@ -137,5 +158,19 @@ public class JobSearchService {
 
     private boolean containsIgnoreCase(String str1, String str2) {
         return str1.toLowerCase().contains(str2.toLowerCase());
+    }
+
+    private List<Job> intesect(List<Job> list1, List<Job> list2) {
+        List<Job> list = new ArrayList<>();
+
+        if (list2.isEmpty()) return list1;
+
+        for (Job item : list1) {
+            if(list2.contains(item)) {
+                list.add(item);
+            }
+        }
+
+        return list;
     }
 }
