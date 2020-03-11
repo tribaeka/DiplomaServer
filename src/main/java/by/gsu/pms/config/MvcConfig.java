@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
-    @Value("${user.fimages.path}")
+    @Value("${user.images.path}")
     private String userImagesPath;
     @Value("${static.image.path}")
     private String staticImagePath;

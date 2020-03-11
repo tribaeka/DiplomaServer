@@ -4,6 +4,7 @@ import by.gsu.pms.domain.Cv;
 import by.gsu.pms.payload.response.MessageResponse;
 import by.gsu.pms.repo.CvRepo;
 import by.gsu.pms.repo.UserRepo;
+import by.gsu.pms.service.FileService;
 import by.gsu.pms.service.SkillService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeanUtils;
@@ -16,13 +17,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.UUID;
 
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -39,6 +38,9 @@ public class CvController {
 
     @Autowired
     private SkillService skillService;
+
+    @Autowired
+    private FileService fileService;
 
     @Value("${cv.files.path}")
     private String cvFilesPath;
@@ -62,7 +64,7 @@ public class CvController {
         respHeaders.setContentType(new MediaType("text", "json"));
         respHeaders.setCacheControl("must-revalidate, post-check=0, pre-check=0");
         respHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + (cv.getTitle() + ".docx"));
-        return new ResponseEntity<byte[]>(data, respHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(data, respHeaders, HttpStatus.OK);
     }
 
     @GetMapping("user/{username}")
@@ -83,16 +85,8 @@ public class CvController {
         cv.setCvSkillSet(skillService.restoreSkillListFromString(skills));
         cv.setUser(userRepo.getOne(Long.parseLong(userId)));
         if (file != null && ! file.getOriginalFilename().isEmpty()){
-            File uploadDir = new File(cvFilesPath);
-            if (!uploadDir.exists()){
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFileName = uuidFile + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(cvFilesPath +"/" + resultFileName ));
-            cv.setFileName(resultFileName);
+            String fileName = fileService.saveFileToFolder(file, cvFilesPath);
+            cv.setFileName(fileName);
         }
         return cvRepo.save(cv);
     }
@@ -110,16 +104,8 @@ public class CvController {
         cv.setUser(userRepo.getOne(Long.parseLong(userId)));
         try {
             if (!cvFromDb.getFileName().equalsIgnoreCase(file.getOriginalFilename())){
-                File uploadDir = new File(cvFilesPath);
-                if (!uploadDir.exists()){
-                    uploadDir.mkdir();
-                }
-
-                String uuidFile = UUID.randomUUID().toString();
-                String resultFileName = uuidFile + "." + file.getOriginalFilename();
-
-                file.transferTo(new File(cvFilesPath +"/" + resultFileName ));
-                cv.setFileName(resultFileName);
+                String fileName = fileService.saveFileToFolder(file, cvFilesPath);
+                cv.setFileName(fileName);
             } else {
                 cv.setFileName(cvFromDb.getFileName());
             }

@@ -52,16 +52,16 @@ INSERT INTO diploma.user_roles (user_id, role_id) VALUES (3, 3);
 INSERT INTO diploma.user_roles (user_id, role_id) VALUES (4, 1);
 
 
-INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (1, '/static/cv_default.pdf', 'Junior Java Developer', 1);
-INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (2, '/static/cv_default.pdf', 'Front-end Developer', 2);
-INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (3, '/static/cv_default.pdf', 'ML Engineer', 3);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (1, '', 'Junior Java Developer', 1);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (2, '', 'Front-end Developer', 2);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (3, '', 'ML Engineer', 3);
 INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (4, 'resume.docx', 'Senior Back-end Developer', 11);
-INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (5, '/static/cv_default.pdf', 'JavaScript Developer', 11);
-INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (6, '/static/cv_default.pdf', 'Full-stack Developer', 11);
-INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (7, '/static/cv_default.pdf', 'Unity Developer', 11);
-INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (8, '/static/cv_default.pdf', 'Python Developer', 11);
-INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (9, '/static/cv_default.pdf', 'Network Architect', 11);
-INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (10, '/static/cv_default.pdf', 'DevOps', 11);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (5, '', 'JavaScript Developer', 11);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (6, '', 'Full-stack Developer', 11);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (7, '', 'Unity Developer', 11);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (8, '', 'Python Developer', 11);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (9, '', 'Network Architect', 11);
+INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (10, '', 'DevOps', 11);
 
 
 INSERT INTO diploma.skill (skill_id, name) VALUES (1, 'Java');

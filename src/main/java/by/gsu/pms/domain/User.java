@@ -33,8 +33,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "roleId"))
     private Set<Role> roles = new HashSet<>();
 
+    @Transient
     @Value("${user.default.image}")
-    private String userDefaultImage;
+    public String userDefaultImage;
 
     public User(String username, String email, String password) {
         this.username = username;
