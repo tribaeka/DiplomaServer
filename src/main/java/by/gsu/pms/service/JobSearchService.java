@@ -66,7 +66,7 @@ public class JobSearchService {
         List<Job> resultInTitle = new ArrayList<>();
         List<Job> resultInLocation = new ArrayList<>();
         List<Job> resultInCompany = new ArrayList<>();
-        List<Job> result;
+        List<Job> resultInSkills = new ArrayList<>();
 
         if (!queryRanks.isEmpty() && isAnyMatchInTitle(jobRepo.findAll(), queryRanks)) {
             List<Job> resultsInRank = jobRepo.findAll().stream()
@@ -99,18 +99,16 @@ public class JobSearchService {
                     .collect(Collectors.toList());
         }
 
-        result = intesect(intesect(resultInTitle, resultInLocation), resultInCompany);
-
-        if (isAnyMatchInSkills(result, query)) {
-            List<Job> resultInSkills = result.stream()
+        if (isAnyMatchInSkills(jobRepo.findAll(), query)) {
+            resultInSkills = jobRepo.findAll().stream()
                     .filter(job -> job.getJobSkillSet().stream()
                             .anyMatch(skill -> query.stream()
                                     .anyMatch(subQuery -> containsIgnoreCase(skill.getName(), subQuery))))
                     .collect(Collectors.toList());
-            result.addAll(resultInSkills);
         }
 
-        return result.stream()
+        return Stream.of(resultInTitle, resultInLocation, resultInCompany, resultInSkills)
+                .flatMap(Collection::stream)
                 .distinct()
                 .sorted(Comparator.comparing(Job::getPostDate).reversed())
                 .collect(Collectors.toList());
@@ -160,17 +158,17 @@ public class JobSearchService {
         return str1.toLowerCase().contains(str2.toLowerCase());
     }
 
-    private List<Job> intesect(List<Job> list1, List<Job> list2) {
-        List<Job> list = new ArrayList<>();
-
-        if (list2.isEmpty()) return list1;
-
-        for (Job item : list1) {
-            if(list2.contains(item)) {
-                list.add(item);
-            }
-        }
-
-        return list;
-    }
+//    private List<Job> intesect(List<Job> list1, List<Job> list2) {
+//        List<Job> list = new ArrayList<>();
+//
+//        if (list2.isEmpty()) return list1;
+//
+//        for (Job item : list1) {
+//            if(list2.contains(item)) {
+//                list.add(item);
+//            }
+//        }
+//
+//        return list;
+//    }
 }

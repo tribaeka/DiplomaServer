@@ -5,7 +5,9 @@ import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,6 +34,9 @@ public class User {
             joinColumns = @JoinColumn(name = "userId"),
             inverseJoinColumns = @JoinColumn(name = "roleId"))
     private Set<Role> roles = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy="historyUser")
+    private Set<JobOpenHistory> userHistorySet = new HashSet<>();
 
     @Transient
     @Value("${user.default.image}")

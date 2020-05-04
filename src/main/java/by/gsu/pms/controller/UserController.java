@@ -1,6 +1,8 @@
 package by.gsu.pms.controller;
 
+import by.gsu.pms.domain.Job;
 import by.gsu.pms.domain.User;
+import by.gsu.pms.repo.JobRepo;
 import by.gsu.pms.repo.UserRepo;
 import by.gsu.pms.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -22,6 +23,9 @@ public class UserController {
     private UserRepo userRepo;
     @Autowired
     private FileService fileService;
+    @Autowired
+    private JobRepo jobRepo;
+
 
     @PostMapping("uploadImage")
     public User addImageToUser(@RequestParam("user") String userId, @RequestBody MultipartFile file) throws IOException {

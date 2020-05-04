@@ -1,5 +1,6 @@
 package by.gsu.pms.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Type;
 
@@ -43,4 +44,7 @@ public class Job {
     @ManyToOne
     @JoinColumn(name="job_experience", nullable=false)
     private Experience experience;
+    @JsonIgnore
+    @OneToMany(mappedBy="historyJob")
+    private Set<JobOpenHistory> jobHistorySet = new HashSet<>();
 }
