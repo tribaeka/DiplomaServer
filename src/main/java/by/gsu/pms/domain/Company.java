@@ -19,7 +19,6 @@ public class Company {
     private Long companyId;
     private String name;
     private String siteUrl;
-    private String size;
     @OneToMany(mappedBy = "companiesContact", fetch = FetchType.LAZY)
     private Set<Contact> contactSet;
     @JsonIgnore

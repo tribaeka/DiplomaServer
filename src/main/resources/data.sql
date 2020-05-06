@@ -1,8 +1,8 @@
-INSERT INTO diploma.company (company_id, logo_path, name, site_url, size) VALUES (1, '/img/company/robot-morning-logo.png', 'Robot Morning', 'https://www.robotmorning.com/', '2500');
-INSERT INTO diploma.company (company_id, logo_path, name, site_url, size) VALUES (2, '/img/company/impossible-foods-logo.jpg', 'Impossible Foods', 'http://impossiblefoods.com/', '4000');
-INSERT INTO diploma.company (company_id, logo_path, name, site_url, size) VALUES (3, '/img/company/tempest-logo.png', 'Tempest', 'https://www.jointempest.com/', '1500');
-INSERT INTO diploma.company (company_id, logo_path, name, site_url, size) VALUES (4, '/img/company/het-cak-logo.jpg', 'Het CAK', 'https://werkenbijhetcat.nl', '3000');
-INSERT INTO diploma.company (company_id, logo_path, name, site_url, size) VALUES (5, '/img/company/ascension-logo.png', 'Ascension', 'https://jobs.ascension.org/', '5000');
+INSERT INTO diploma.company (company_id, logo_path, name, site_url) VALUES (1, '/img/company/robot-morning-logo.png', 'Robot Morning', 'https://www.robotmorning.com/');
+INSERT INTO diploma.company (company_id, logo_path, name, site_url) VALUES (2, '/img/company/impossible-foods-logo.jpg', 'Impossible Foods', 'http://impossiblefoods.com/');
+INSERT INTO diploma.company (company_id, logo_path, name, site_url) VALUES (3, '/img/company/tempest-logo.png', 'Tempest', 'https://www.jointempest.com/');
+INSERT INTO diploma.company (company_id, logo_path, name, site_url) VALUES (4, '/img/company/het-cak-logo.jpg', 'Het CAK', 'https://werkenbijhetcat.nl');
+INSERT INTO diploma.company (company_id, logo_path, name, site_url) VALUES (5, '/img/company/ascension-logo.png', 'Ascension', 'https://jobs.ascension.org/');
 
 
 INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (1, 'Lacy_Conroy@gmail.com', 'Lacy', 'Conroy', '123647899', 1);
