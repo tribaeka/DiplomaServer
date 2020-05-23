@@ -28,7 +28,6 @@ import java.util.List;
 @RestController
 @RequestMapping("cv")
 public class CvController {
-    private ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     private CvRepo cvRepo;

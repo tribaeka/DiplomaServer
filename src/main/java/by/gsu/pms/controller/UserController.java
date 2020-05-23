@@ -1,8 +1,6 @@
 package by.gsu.pms.controller;
 
-import by.gsu.pms.domain.Job;
 import by.gsu.pms.domain.User;
-import by.gsu.pms.repo.JobRepo;
 import by.gsu.pms.repo.UserRepo;
 import by.gsu.pms.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
+
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -23,8 +21,6 @@ public class UserController {
     private UserRepo userRepo;
     @Autowired
     private FileService fileService;
-    @Autowired
-    private JobRepo jobRepo;
 
 
     @PostMapping("uploadImage")
@@ -32,7 +28,7 @@ public class UserController {
         User user = userRepo.getOne(Long.parseLong(userId));
         String fileName = fileService.saveFileToFolder(file, userImagesPath);
 
-        user.setImageName(fileName);
+        user.setImageName("/img/user/" + fileName);
 
         return userRepo.save(user);
     }

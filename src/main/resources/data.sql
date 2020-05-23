@@ -1,9 +1,9 @@
-INSERT INTO diploma.company (company_id, logo_path, name, site_url) VALUES (1, '/img/company/robot-morning-logo.png', 'Robot Morning', 'https://www.robotmorning.com/');
-INSERT INTO diploma.company (company_id, logo_path, name, site_url) VALUES (2, '/img/company/impossible-foods-logo.jpg', 'Impossible Foods', 'http://impossiblefoods.com/');
-INSERT INTO diploma.company (company_id, logo_path, name, site_url) VALUES (3, '/img/company/tempest-logo.png', 'Tempest', 'https://www.jointempest.com/');
-INSERT INTO diploma.company (company_id, logo_path, name, site_url) VALUES (4, '/img/company/het-cak-logo.jpg', 'Het CAK', 'https://werkenbijhetcat.nl');
-INSERT INTO diploma.company (company_id, logo_path, name, site_url) VALUES (5, '/img/company/ascension-logo.png', 'Ascension', 'https://jobs.ascension.org/');
-
+INSERT INTO diploma.company (company_id, logo_path, name, site_url, company_owner) VALUES (1, '/img/company/robot-morning-logo.png', 'Robot Morning', 'https://www.robotmorning.com/', null);
+INSERT INTO diploma.company (company_id, logo_path, name, site_url, company_owner) VALUES (2, '/img/company/impossible-foods-logo.jpg', 'Impossible Foods', 'http://impossiblefoods.com/', null);
+INSERT INTO diploma.company (company_id, logo_path, name, site_url, company_owner) VALUES (3, '/img/company/tempest-logo.png', 'Tempest', 'https://www.jointempest.com/', null);
+INSERT INTO diploma.company (company_id, logo_path, name, site_url, company_owner) VALUES (4, '/img/company/het-cak-logo.jpg', 'Het CAK', 'https://werkenbijhetcat.nl', null);
+INSERT INTO diploma.company (company_id, logo_path, name, site_url, company_owner) VALUES (5, '/img/company/ascension-logo.png', 'Ascension', 'https://jobs.ascension.org/', null);
+INSERT INTO diploma.company (company_id, logo_path, name, site_url, company_owner) VALUES (6, null, ' Gomel Cloud', 'google.com', 12);
 
 INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (1, 'Lacy_Conroy@gmail.com', 'Lacy', 'Conroy', '123647899', 1);
 INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (2, 'Ellesse_Redman@gmail.com', 'Ellesse', 'Redman', '321445566', 2);
@@ -29,27 +29,29 @@ INSERT INTO diploma.location (location_id, image_path, name) VALUES (9, '/img/fl
 INSERT INTO diploma.location (location_id, image_path, name) VALUES (10, '/img/flags/162-germany.png', 'Berlin');
 
 INSERT INTO diploma.role(name) VALUES('ROLE_USER');
-INSERT INTO diploma.role(name) VALUES('ROLE_MODERATOR');
+INSERT INTO diploma.role(name) VALUES('ROLE_COMPANY_OWNER');
 INSERT INTO diploma.role(name) VALUES('ROLE_ADMIN');
 
 
-INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (1, true, 'Darcie_Wagner@gmail.com', 'dw1234', '234548865', 'Darcie.Wagner');
-INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (2, true, 'Cassidy_Howe@gmail.com', 'ch1234', '350234504', 'Cassidy.Howe');
-INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (3, true, 'Ansh_Corona', 'ac1234', '324265065', 'Ansh.Corona');
-INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (4, true, 'Elen_Smart@gmail.com', 'es1234', '234324523', 'Elen.Smart');
-INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (5, true, 'Thalia_Ballard@gmail.com', 'tb1234', '234234534', 'Thalia.Ballard');
-INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (6, false, 'Morwenna_King@gmail.com', 'mk1234', '123141242', 'Morwenna.King');
-INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (7, false, 'Roshan_Frey@gmail.com', 'rf1234', '235086341', 'Roshan.Frey');
-INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (8, false, 'Roberta_Schaefer@gmail.com', 'rs1234', '234523467', 'Roberta.Schaefer');
-INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (9, false, 'Shelley_Harding', 'sh1234', '456485894', 'Shelley.Harding');
-INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (10, false, 'Taybah_House@gmail.com', 'th1234', '083474234', 'Taybah.House');
-INSERT INTO diploma.user (user_id, active, email, password, phone, username) VALUES (11, false, 'user@gmail.com', '$2a$14$MR848aowHq/xbmedJESEoOBUnncnG7XEscm66enVVj5b36GfU17vu', null, 'user');
-
+INSERT INTO diploma.user (user_id, active, email, image_name, password, phone, username) VALUES (1, true, 'Darcie_Wagner@gmail.com', null, 'dw1234', '234548865', 'Darcie.Wagner');
+INSERT INTO diploma.user (user_id, active, email, image_name, password, phone, username) VALUES (2, true, 'Cassidy_Howe@gmail.com', null, 'ch1234', '350234504', 'Cassidy.Howe');
+INSERT INTO diploma.user (user_id, active, email, image_name, password, phone, username) VALUES (3, true, 'Ansh_Corona', null, 'ac1234', '324265065', 'Ansh.Corona');
+INSERT INTO diploma.user (user_id, active, email, image_name, password, phone, username) VALUES (4, true, 'Elen_Smart@gmail.com', null, 'es1234', '234324523', 'Elen.Smart');
+INSERT INTO diploma.user (user_id, active, email, image_name, password, phone, username) VALUES (5, true, 'Thalia_Ballard@gmail.com', null, 'tb1234', '234234534', 'Thalia.Ballard');
+INSERT INTO diploma.user (user_id, active, email, image_name, password, phone, username) VALUES (6, false, 'Morwenna_King@gmail.com', null, 'mk1234', '123141242', 'Morwenna.King');
+INSERT INTO diploma.user (user_id, active, email, image_name, password, phone, username) VALUES (7, false, 'Roshan_Frey@gmail.com', null, 'rf1234', '235086341', 'Roshan.Frey');
+INSERT INTO diploma.user (user_id, active, email, image_name, password, phone, username) VALUES (8, false, 'Roberta_Schaefer@gmail.com', null, 'rs1234', '234523467', 'Roberta.Schaefer');
+INSERT INTO diploma.user (user_id, active, email, image_name, password, phone, username) VALUES (9, false, 'Shelley_Harding', null, 'sh1234', '456485894', 'Shelley.Harding');
+INSERT INTO diploma.user (user_id, active, email, image_name, password, phone, username) VALUES (10, false, 'Taybah_House@gmail.com', null, 'th1234', '083474234', 'Taybah.House');
+INSERT INTO diploma.user (user_id, active, email, image_name, password, phone, username) VALUES (11, false, 'user@gmail.com', null, '$2a$14$MR848aowHq/xbmedJESEoOBUnncnG7XEscm66enVVj5b36GfU17vu', null, 'user');
+INSERT INTO diploma.user (user_id, active, email, image_name, password, phone, username) VALUES (12, false, 'owner@mail.com', null, '$2a$14$MSkl8tjFQ0NFXXtJrlIh7OEXG.2FHpNuY8v6JvBjdNlWvWWUM4xo.', null, 'owner');
 
 INSERT INTO diploma.user_roles (user_id, role_id) VALUES (1, 1);
 INSERT INTO diploma.user_roles (user_id, role_id) VALUES (2, 2);
 INSERT INTO diploma.user_roles (user_id, role_id) VALUES (3, 3);
 INSERT INTO diploma.user_roles (user_id, role_id) VALUES (4, 1);
+INSERT INTO diploma.user_roles (user_id, role_id) VALUES (11, 1);
+INSERT INTO diploma.user_roles (user_id, role_id) VALUES (12, 2);
 
 
 INSERT INTO diploma.cv (cv_id, file_name, title, users_cv) VALUES (1, '', 'Junior Java Developer', 1);

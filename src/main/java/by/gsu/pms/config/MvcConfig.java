@@ -9,6 +9,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MvcConfig implements WebMvcConfigurer {
     @Value("${user.images.path}")
     private String userImagesPath;
+    @Value("${company.images.path}")
+    private String companyImagesPath;
     @Value("${static.image.path}")
     private String staticImagePath;
 
@@ -19,7 +21,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/img/flags/**")
                 .addResourceLocations("file://" + staticImagePath + "img/location-flags/");
         registry.addResourceHandler("/img/company/**")
-                .addResourceLocations("file://" + staticImagePath + "img/company-logo/");
+                .addResourceLocations("file://" + companyImagesPath);
         registry.addResourceHandler("/img/user/**")
                 .addResourceLocations("file://" + userImagesPath);
     }

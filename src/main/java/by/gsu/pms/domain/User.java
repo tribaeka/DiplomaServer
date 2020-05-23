@@ -5,9 +5,7 @@ import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,6 +35,8 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy="historyUser")
     private Set<JobOpenHistory> userHistorySet = new HashSet<>();
+    @OneToOne(mappedBy = "owner")
+    private Company company;
 
     @Transient
     @Value("${user.default.image}")

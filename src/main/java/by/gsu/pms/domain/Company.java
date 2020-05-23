@@ -25,6 +25,10 @@ public class Company {
     @OneToMany(mappedBy = "companiesJob", fetch = FetchType.LAZY)
     private Set<Job> jobSet = new HashSet<>();
     private String logoPath;
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "company_owner")
+    private User owner;
 
     @Override
     public String toString() {

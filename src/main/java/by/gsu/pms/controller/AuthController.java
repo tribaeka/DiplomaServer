@@ -2,20 +2,20 @@ package by.gsu.pms.controller;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import by.gsu.pms.domain.ERole;
-import by.gsu.pms.domain.Role;
-import by.gsu.pms.domain.User;
-import by.gsu.pms.domain.UserDetailsImpl;
+import by.gsu.pms.domain.*;
 import by.gsu.pms.jwt.JwtUtils;
+import by.gsu.pms.payload.request.ChainCompanyRequest;
 import by.gsu.pms.payload.request.LoginRequest;
 import by.gsu.pms.payload.request.SignupRequest;
 import by.gsu.pms.payload.response.JwtResponse;
 import by.gsu.pms.payload.response.MessageResponse;
+import by.gsu.pms.repo.CompanyRepo;
 import by.gsu.pms.repo.RoleRepo;
 import by.gsu.pms.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,19 +36,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/auth")
 public class AuthController {
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
 
     @Autowired
-    RoleRepo roleRepo;
+    private RoleRepo roleRepo;
 
     @Autowired
-    PasswordEncoder encoder;
+    private CompanyRepo companyRepo;
 
     @Autowired
-    JwtUtils jwtUtils;
+    private PasswordEncoder encoder;
+
+    @Autowired
+    private JwtUtils jwtUtils;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -109,8 +112,8 @@ public class AuthController {
                         roles.add(adminRole);
 
                         break;
-                    case "mod":
-                        Role modRole = roleRepo.findByName(ERole.ROLE_MODERATOR)
+                    case "owner":
+                        Role modRole = roleRepo.findByName(ERole.ROLE_COMPANY_OWNER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(modRole);
 
@@ -126,6 +129,20 @@ public class AuthController {
         user.setRoles(roles);
         userRepo.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        Optional<User> restoredUser = userRepo.findByUsername(user.getUsername());
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!", restoredUser.get().getUserId()));
+    }
+
+    @PostMapping("/addCompany")
+    public ResponseEntity<?> addCompany(@RequestBody ChainCompanyRequest chainCompanyRequest) {
+        System.out.println(chainCompanyRequest);
+        Company company = new Company();
+        company.setName(chainCompanyRequest.getCompanyName());
+        company.setSiteUrl(chainCompanyRequest.getSiteUrl());
+        company.setOwner(userRepo.getOne(chainCompanyRequest.getUserId()));
+
+        System.out.println(companyRepo.saveAndFlush(company).getCompanyId());
+
+        return ResponseEntity.ok(new MessageResponse("Company chained successfully!"));
     }
 }

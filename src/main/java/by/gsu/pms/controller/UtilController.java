@@ -14,16 +14,14 @@ import java.util.stream.Collectors;
 @RequestMapping("util")
 public class UtilController {
 
-    private final JobRepo jobRepo;
     private final SkillRepo skillRepo;
     private final CompanyRepo companyRepo;
     private final LocationRepo locationRepo;
     private final ExperienceRepo experienceRepo;
 
     @Autowired
-    public UtilController(JobRepo jobRepo, SkillRepo skillRepo, CompanyRepo companyRepo, LocationRepo locationRepo,
+    public UtilController(SkillRepo skillRepo, CompanyRepo companyRepo, LocationRepo locationRepo,
                           ExperienceRepo experienceRepo) {
-        this.jobRepo = jobRepo;
         this.skillRepo = skillRepo;
         this.companyRepo = companyRepo;
         this.locationRepo = locationRepo;
