@@ -7,14 +7,9 @@ import lombok.Setter;
 @Setter
 public class MessageResponse {
     private String message;
-    private Long userId;
 
     public MessageResponse(String message) {
         this.message = message;
     }
 
-    public MessageResponse(String message, Long userId) {
-        this.message = message;
-        this.userId = userId;
-    }
 }

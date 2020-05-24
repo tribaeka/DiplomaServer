@@ -19,16 +19,13 @@ public class Company {
     private Long companyId;
     private String name;
     private String siteUrl;
-    @OneToMany(mappedBy = "companiesContact", fetch = FetchType.LAZY)
-    private Set<Contact> contactSet;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
     @JsonIgnore
     @OneToMany(mappedBy = "companiesJob", fetch = FetchType.LAZY)
     private Set<Job> jobSet = new HashSet<>();
     private String logoPath;
-    @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "company_owner")
-    private User owner;
 
     @Override
     public String toString() {

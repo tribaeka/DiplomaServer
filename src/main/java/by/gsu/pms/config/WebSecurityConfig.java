@@ -60,11 +60,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests().antMatchers("/api/auth/**", "/job/**", "/util/**", "/img/**").permitAll()
-                .antMatchers("/cv/**", "/user/").permitAll()
-                .anyRequest().authenticated();
+                .authorizeRequests().antMatchers("/user/**").authenticated()
+                .anyRequest().permitAll();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
-    // auth source -> https://bezkoder.com/angular-spring-boot-jwt-auth/#Demo
 }

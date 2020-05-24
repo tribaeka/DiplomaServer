@@ -25,9 +25,7 @@ public class Job {
     private String title;
     @Type(type="text")
     private String description;
-    @ManyToOne
-    @JoinColumn(name="job_location", nullable=false)
-    private Location location;
+    private String location;
     @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinTable(
             name = "skillsForJob",
@@ -41,9 +39,7 @@ public class Job {
     @JoinColumn(name = "companiesJob")
     private Company companiesJob;
     private int salary;
-    @ManyToOne
-    @JoinColumn(name="job_experience", nullable=false)
-    private Experience experience;
+    private int experience;
     @JsonIgnore
     @OneToMany(mappedBy="historyJob")
     private Set<JobOpenHistory> jobHistorySet = new HashSet<>();

@@ -45,9 +45,6 @@ public class AuthController {
     private RoleRepo roleRepo;
 
     @Autowired
-    private CompanyRepo companyRepo;
-
-    @Autowired
     private PasswordEncoder encoder;
 
     @Autowired
@@ -129,20 +126,6 @@ public class AuthController {
         user.setRoles(roles);
         userRepo.save(user);
 
-        Optional<User> restoredUser = userRepo.findByUsername(user.getUsername());
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!", restoredUser.get().getUserId()));
-    }
-
-    @PostMapping("/addCompany")
-    public ResponseEntity<?> addCompany(@RequestBody ChainCompanyRequest chainCompanyRequest) {
-        System.out.println(chainCompanyRequest);
-        Company company = new Company();
-        company.setName(chainCompanyRequest.getCompanyName());
-        company.setSiteUrl(chainCompanyRequest.getSiteUrl());
-        company.setOwner(userRepo.getOne(chainCompanyRequest.getUserId()));
-
-        System.out.println(companyRepo.saveAndFlush(company).getCompanyId());
-
-        return ResponseEntity.ok(new MessageResponse("Company chained successfully!"));
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 }

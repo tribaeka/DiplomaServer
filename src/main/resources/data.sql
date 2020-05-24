@@ -1,32 +1,21 @@
-INSERT INTO diploma.company (company_id, logo_path, name, site_url, company_owner) VALUES (1, '/img/company/robot-morning-logo.png', 'Robot Morning', 'https://www.robotmorning.com/', null);
-INSERT INTO diploma.company (company_id, logo_path, name, site_url, company_owner) VALUES (2, '/img/company/impossible-foods-logo.jpg', 'Impossible Foods', 'http://impossiblefoods.com/', null);
-INSERT INTO diploma.company (company_id, logo_path, name, site_url, company_owner) VALUES (3, '/img/company/tempest-logo.png', 'Tempest', 'https://www.jointempest.com/', null);
-INSERT INTO diploma.company (company_id, logo_path, name, site_url, company_owner) VALUES (4, '/img/company/het-cak-logo.jpg', 'Het CAK', 'https://werkenbijhetcat.nl', null);
-INSERT INTO diploma.company (company_id, logo_path, name, site_url, company_owner) VALUES (5, '/img/company/ascension-logo.png', 'Ascension', 'https://jobs.ascension.org/', null);
-INSERT INTO diploma.company (company_id, logo_path, name, site_url, company_owner) VALUES (6, null, ' Gomel Cloud', 'google.com', 12);
+INSERT INTO diploma.company (company_id, logo_path, name, site_url, contact_id) VALUES (1, '/img/company/robot-morning-logo.png', 'Robot Morning', 'https://www.robotmorning.com/', 1);
+INSERT INTO diploma.company (company_id, logo_path, name, site_url, contact_id) VALUES (2, '/img/company/impossible-foods-logo.jpg', 'Impossible Foods', 'http://impossiblefoods.com/', 2);
+INSERT INTO diploma.company (company_id, logo_path, name, site_url, contact_id) VALUES (3, '/img/company/tempest-logo.png', 'Tempest', 'https://www.jointempest.com/', 3);
+INSERT INTO diploma.company (company_id, logo_path, name, site_url, contact_id) VALUES (4, '/img/company/het-cak-logo.jpg', 'Het CAK', 'https://werkenbijhetcat.nl', 4);
+INSERT INTO diploma.company (company_id, logo_path, name, site_url, contact_id) VALUES (5, '/img/company/ascension-logo.png', 'Ascension', 'https://jobs.ascension.org/', 5);
+INSERT INTO diploma.company (company_id, logo_path, name, site_url, contact_id) VALUES (6, null, ' Gomel Cloud', 'google.com', 6);
 
-INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (1, 'Lacy_Conroy@gmail.com', 'Lacy', 'Conroy', '123647899', 1);
-INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (2, 'Ellesse_Redman@gmail.com', 'Ellesse', 'Redman', '321445566', 2);
-INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (3, 'Darcie_Drew@gmail.com', 'Darcie', 'Drew', '879808343', 3);
-INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (4, 'Lianne_Hicks@gmail.com', 'Lianne', 'Hicks', '436827345', 4);
-INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (5, 'Mylo_Mata@gmail.com', 'Mylo', 'Mata', '374823746', 5);
-INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (6, 'Darren_Wyatt@gmail.com', 'Darren', 'Wyatt', '378429187', 1);
-INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (7, 'Kien_Mcfarland@gmail.com', 'Kien', 'Mcfarland', '237846237', 2);
-INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (8, 'Ayyub_Amin@gmail.com', 'Ayyub', 'Amin', '897209203', 3);
-INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (9, 'Bryan_Sheehan@gmail.com', 'Bryan', 'Sheehan', '381764324', 4);
-INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone, companies_contact) VALUES (10, 'Kaylen_Drake@gmail.com', 'Kaylen', 'Drake', '082138344', 5);
+INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone) VALUES (1, 'bawita9563@ximtyl.com', 'Lacy', 'Conroy', '123647899');
+INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone) VALUES (2, 'Ellesse_Redman@gmail.com', 'Ellesse', 'Redman', '321445566');
+INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone) VALUES (3, 'Darcie_Drew@gmail.com', 'Darcie', 'Drew', '879808343');
+INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone) VALUES (4, 'Lianne_Hicks@gmail.com', 'Lianne', 'Hicks', '436827345');
+INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone) VALUES (5, 'Mylo_Mata@gmail.com', 'Mylo', 'Mata', '374823746');
+INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone) VALUES (6, 'Darren_Wyatt@gmail.com', 'Darren', 'Wyatt', '378429187');
+INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone) VALUES (7, 'Kien_Mcfarland@gmail.com', 'Kien', 'Mcfarland', '237846237');
+INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone) VALUES (8, 'Ayyub_Amin@gmail.com', 'Ayyub', 'Amin', '897209203');
+INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone) VALUES (9, 'Bryan_Sheehan@gmail.com', 'Bryan', 'Sheehan', '381764324');
+INSERT INTO diploma.contact (contact_id, email, first_name, last_name, phone) VALUES (10, 'Kaylen_Drake@gmail.com', 'Kaylen', 'Drake', '082138344');
 
-
-INSERT INTO diploma.location (location_id, image_path, name) VALUES (1, '/img/flags/000-remote.png', 'Remote');
-INSERT INTO diploma.location (location_id, image_path, name) VALUES (2, '/img/flags/263-usa.png', 'New York');
-INSERT INTO diploma.location (location_id, image_path, name) VALUES (3, '/img/flags/237-netherlands.png', 'Den Haag');
-INSERT INTO diploma.location (location_id, image_path, name) VALUES (4, '/img/flags/237-netherlands.png', 'Dordrecht');
-INSERT INTO diploma.location (location_id, image_path, name) VALUES (5, '/img/flags/263-usa.png', 'Cincinnati');
-INSERT INTO diploma.location (location_id, image_path, name) VALUES (6, '/img/flags/263-usa.png', 'Chicago, IL');
-INSERT INTO diploma.location (location_id, image_path, name) VALUES (7, '/img/flags/263-usa.png', 'Austin, TX');
-INSERT INTO diploma.location (location_id, image_path, name) VALUES (8, '/img/flags/260-united-kingdom.png', 'Cambridge');
-INSERT INTO diploma.location (location_id, image_path, name) VALUES (9, '/img/flags/263-usa.png', 'Portland, Maine');
-INSERT INTO diploma.location (location_id, image_path, name) VALUES (10, '/img/flags/162-germany.png', 'Berlin');
 
 INSERT INTO diploma.role(name) VALUES('ROLE_USER');
 INSERT INTO diploma.role(name) VALUES('ROLE_COMPANY_OWNER');
@@ -90,12 +79,6 @@ INSERT INTO diploma.skill (skill_id, name) VALUES (21, 'MachineLearning');
 INSERT INTO diploma.skill (skill_id, name) VALUES (22, 'DataAnalytics');
 
 
-INSERT INTO diploma.experience (experience_id, name) VALUES (1, 'No experience');
-INSERT INTO diploma.experience (experience_id, name) VALUES (2, '1 to 3 years');
-INSERT INTO diploma.experience (experience_id, name) VALUES (3, '3 to 6 years');
-INSERT INTO diploma.experience (experience_id, name) VALUES (4, 'more than 6 years');
-
-
 INSERT INTO diploma.skills_for_cv (cv_id, skill_id) VALUES (1, 1);
 INSERT INTO diploma.skills_for_cv (cv_id, skill_id) VALUES (1, 2);
 INSERT INTO diploma.skills_for_cv (cv_id, skill_id) VALUES (1, 3);
@@ -131,7 +114,7 @@ INSERT INTO diploma.skills_for_cv (cv_id, skill_id) VALUES (5, 16);
 INSERT INTO diploma.skills_for_cv (cv_id, skill_id) VALUES (5, 17);
 
 
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary, job_experience) VALUES (1, '<p>We’re looking for great engineers with diverse backgrounds. We need people that can fill hybrid roles with different emphases on the wide context of product development. We don’t have predefined positions: instead, we invite you to come talk to us about your skills, experience, ambitions, and dream role. We hope to find exceptional people to do exceptional work with us, and we believe it’s important that we define your role and path to our mutual growth together.</p>
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, location, salary, experience) VALUES (1, '<p>We’re looking for great engineers with diverse backgrounds. We need people that can fill hybrid roles with different emphases on the wide context of product development. We don’t have predefined positions: instead, we invite you to come talk to us about your skills, experience, ambitions, and dream role. We hope to find exceptional people to do exceptional work with us, and we believe it’s important that we define your role and path to our mutual growth together.</p>
       <p>Reaktor is a hybrid partner for all things future. We reimagine businesses, and we design and build tomorrow’s digital products. Our full range of consultancy and agency services include expertise from high-level business consulting, to hands-on service and product design and development, to branding and marketing.</p>
       <p>We believe in technology-agnostic product thinking, defined only by finding meaningful solutions to challenging problems. Your passion should be the same as ours: unmatched execution of those solutions. We structure, create, iterate, and reinvent, delivering tangible value faster than anyone in the world.</p>
       <p>What we can offer you:</p>
@@ -154,11 +137,11 @@ INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, j
         <li>5+ years of real-world experience in building digital products and services.</li>
         <li>Authorization to work in the United States.</li>
       </ul>
-      <p>We invite you to share details of any open source projects, your GitHub profile, and most importantly, your personality. Be original, not official.</p>', '2020-01-20', 'Middle Java Developer', 1, 1, 800, 2);
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary, job_experience) VALUES (2, 'description for Front-end Developer', '2020-01-15', 'Front-end Developer', 2, 2, 750, 2);
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary, job_experience) VALUES (3, 'description for Python Developer', '2020-01-10', 'Python Developer', 3, 3, 900, 2);
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary, job_experience) VALUES (4, 'description for Senior Front-end Developer', '2020-01-25', 'Senior Front-end Developer', 4, 4, 1300, 3);
-INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, job_location, salary, job_experience) VALUES (5, 'description for Juniour Java Developer', '2020-01-05', 'Junior Java Developer', 5, 5, 550, 1);
+      <p>We invite you to share details of any open source projects, your GitHub profile, and most importantly, your personality. Be original, not official.</p>', '2020-01-20', 'Middle Java Developer', 1, 'Remote', 800, 2);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, location, salary, experience) VALUES (2, 'description for Front-end Developer', '2020-01-15', 'Front-end Developer', 2, 'USA', 750, 2);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, location, salary, experience) VALUES (3, 'description for Python Developer', '2020-01-10', 'Python Developer', 3, 'Berlin', 900, 2);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, location, salary, experience) VALUES (4, 'description for Senior Front-end Developer', '2020-01-25', 'Senior Front-end Developer', 4, 'Moscow', 1300, 3);
+INSERT INTO diploma.job (job_id, description, post_date, title, companies_job, location, salary, experience) VALUES (5, 'description for Juniour Java Developer', '2020-01-05', 'Junior Java Developer', 5, 'HY', 550, 1);
 
 
 INSERT INTO diploma.skills_for_job (job_id, skill_id) VALUES (1, 1);
