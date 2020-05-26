@@ -1,22 +1,41 @@
-version: '3.1'
+version: '3.7'
 
 services:
   db:
     image: mysql:latest
-    container_name: mysql-container
-    hostname: mysql-container
     restart: always
     environment:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: server
+      MYSQL_DATABASE: diploma
     ports:
-      - 3310:3306
-  app:
-    image: docker-boot-app
+      - 3306:3306
+    networks:
+      - backend
+      - frontend
+  app-server:
+    image: server-app
     build: .
     depends_on:
       - db
     ports:
-      - 8085:8080
+      - 8080:8080
+    volumes:
+      - ./resources:/resources
+    networks:
+      - backend
+  app-client:
+    image: client-app
+    build:
+      #[WIP]: for now you need to set your own patch to front-end app directory
+      context: /Users/tribaeka/WebstormProjects/Diploma
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    networks:
+      - frontend
+
+networks:
+  backend:
+  frontend:
