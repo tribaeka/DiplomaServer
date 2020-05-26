@@ -2,20 +2,20 @@ package by.gsu.pms.controller;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import by.gsu.pms.domain.ERole;
-import by.gsu.pms.domain.Role;
-import by.gsu.pms.domain.User;
-import by.gsu.pms.domain.UserDetailsImpl;
+import by.gsu.pms.domain.*;
 import by.gsu.pms.jwt.JwtUtils;
+import by.gsu.pms.payload.request.ChainCompanyRequest;
 import by.gsu.pms.payload.request.LoginRequest;
 import by.gsu.pms.payload.request.SignupRequest;
 import by.gsu.pms.payload.response.JwtResponse;
 import by.gsu.pms.payload.response.MessageResponse;
+import by.gsu.pms.repo.CompanyRepo;
 import by.gsu.pms.repo.RoleRepo;
 import by.gsu.pms.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,24 +31,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
 
     @Autowired
-    RoleRepo roleRepo;
+    private RoleRepo roleRepo;
 
     @Autowired
-    PasswordEncoder encoder;
+    private PasswordEncoder encoder;
 
     @Autowired
-    JwtUtils jwtUtils;
+    private JwtUtils jwtUtils;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -68,7 +68,9 @@ public class AuthController {
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                roles));
+                roles,
+                userDetails.getImageName())
+        );
     }
 
     @PostMapping("/signup")
@@ -107,8 +109,8 @@ public class AuthController {
                         roles.add(adminRole);
 
                         break;
-                    case "mod":
-                        Role modRole = roleRepo.findByName(ERole.ROLE_MODERATOR)
+                    case "owner":
+                        Role modRole = roleRepo.findByName(ERole.ROLE_COMPANY_OWNER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(modRole);
 

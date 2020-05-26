@@ -19,14 +19,18 @@ public class Skill {
     private Long skillId;
     private String name;
     @JsonIgnore
-    @ManyToMany(mappedBy = "cvSkillSet", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "cvSkillSet", fetch = FetchType.LAZY)
     private Set<Cv> cvSet = new HashSet<>();
     @JsonIgnore
-    @ManyToMany(mappedBy = "jobSkillSet", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "jobSkillSet", fetch = FetchType.LAZY)
     private Set<Job> jobSet = new HashSet<>();
 
     @Override
     public String toString() {
         return name;
+    }
+
+    public Skill (String name) {
+        this.name = name;
     }
 }

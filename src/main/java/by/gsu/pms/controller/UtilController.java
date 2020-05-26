@@ -1,54 +1,54 @@
 package by.gsu.pms.controller;
 
-import by.gsu.pms.domain.Experience;
+import by.gsu.pms.domain.Contact;
+import by.gsu.pms.domain.Cv;
+import by.gsu.pms.domain.Skill;
+import by.gsu.pms.domain.User;
+import by.gsu.pms.payload.response.MessageResponse;
 import by.gsu.pms.repo.*;
+import by.gsu.pms.service.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("util")
 public class UtilController {
 
-    private final JobRepo jobRepo;
-    private final SkillRepo skillRepo;
-    private final CompanyRepo companyRepo;
-    private final LocationRepo locationRepo;
-    private final ExperienceRepo experienceRepo;
-
     @Autowired
-    public UtilController(JobRepo jobRepo, SkillRepo skillRepo, CompanyRepo companyRepo, LocationRepo locationRepo,
-                          ExperienceRepo experienceRepo) {
-        this.jobRepo = jobRepo;
-        this.skillRepo = skillRepo;
-        this.companyRepo = companyRepo;
-        this.locationRepo = locationRepo;
-        this.experienceRepo = experienceRepo;
-    }
+    private SkillRepo skillRepo;
+    @Autowired
+    private CompanyRepo companyRepo;
+    @Autowired
+    private MailSender mailSender;
+    @Autowired
+    private ContactRepo contactRepo;
+    @Autowired
+    private CvRepo cvRepo;
+    @Autowired
+    private UserRepo userRepo;
 
-    @GetMapping("autocomplete")
-    public List<String> getAutocompleteDictionary () {
+    @GetMapping("autocomplete/search")
+    public List<String> getAutocompleteSearchDictionary () {
         List<String> result = new ArrayList<>();
 
-        jobRepo.findAll().forEach(job -> result.add(job.getTitle()));
         skillRepo.findAll().forEach(skill -> result.add(skill.getName()));
         companyRepo.findAll().forEach(company -> result.add(company.getName()));
-        locationRepo.findAll().forEach(location -> result.add(location.getName()));
+        Collections.sort(result);
 
         return result;
     }
 
-    @GetMapping("experiences")
-    public List<Experience> getExperiences() {
-        return experienceRepo.findAll();
+    @GetMapping("autocomplete/skills")
+    public List<String> getAutocompleteSkillsDictionary () {
+        return skillRepo.findAllByOrderByName().stream()
+                .map(Skill::getName)
+                .collect(Collectors.toList());
+
     }
 
     @GetMapping("search-builds/job")
@@ -73,7 +73,43 @@ public class UtilController {
 
     @GetMapping("search-builds/cv")
     public Map<String, String> getSearchBuildsForCv() {
-        return new HashMap<String, String>();
+        return new HashMap<>();
     }
 
+    @PostMapping("sendJobRespond")
+    public ResponseEntity<?> sendCvToContact(
+            @RequestParam("contactId") String contactId,
+            @RequestParam("jobTitle") String jobTitle,
+            @RequestParam("cvId") String cvId,
+            @RequestParam("userId") String userId,
+            @RequestParam("comment") String comment
+    ) {
+        Contact contact = contactRepo.getOne(Long.parseLong(contactId));
+        Cv cv = cvRepo.getOne(Long.parseLong(cvId));
+        User user = userRepo.getOne(Long.parseLong(userId));
+
+        StringBuilder message = new StringBuilder();
+        message
+                .append("Hello, ")
+                .append(contact.getFirstName())
+                .append(" you have a new respond to ")
+                .append(jobTitle)
+                .append("\n\nHere is cv of a candidate:")
+                .append("\n\tMain skills:");
+        cv.getCvSkillSet().forEach(skill -> message.append(" ").append(skill.getName()).append(" "));
+        message
+                .append("\n\tComment from writer:\n\t\t")
+                .append(comment)
+                .append("\n\tLink to download full cv: http://localhost:8080/cv/download/")
+                .append(cv.getCvId())
+                .append("\n\n You can contact with writer by contacts bellow:")
+                .append("\n\tEmail:")
+                .append(user.getEmail())
+                .append("\n\tPhone:")
+                .append(user.getPhone())
+                .append("\n\nThank you for using our service.");
+
+        mailSender.send(contact.getEmail(), "You have new response for posted Job", message.toString());
+        return ResponseEntity.ok(new MessageResponse("Message has sent"));
+    }
 }

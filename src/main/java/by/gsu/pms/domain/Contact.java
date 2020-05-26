@@ -23,7 +23,6 @@ public class Contact {
     private String email;
     private String phone;
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "companiesContact")
-    private Company companiesContact;
+    @OneToOne(mappedBy = "contact")
+    private Company companyContact;
 }

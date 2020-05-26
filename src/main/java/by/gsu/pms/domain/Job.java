@@ -1,5 +1,6 @@
 package by.gsu.pms.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Type;
 
@@ -24,10 +25,8 @@ public class Job {
     private String title;
     @Type(type="text")
     private String description;
-    @ManyToOne
-    @JoinColumn(name="job_location", nullable=false)
-    private Location location;
-    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    private String location;
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinTable(
             name = "skillsForJob",
             joinColumns = { @JoinColumn(name = "jobId") },
@@ -36,11 +35,12 @@ public class Job {
     private Set<Skill> jobSkillSet = new HashSet<>();
     @CreatedDate
     private LocalDate postDate;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "companiesJob")
     private Company companiesJob;
     private int salary;
-    @ManyToOne
-    @JoinColumn(name="job_experience", nullable=false)
-    private Experience experience;
+    private int experience;
+    @JsonIgnore
+    @OneToMany(mappedBy="historyJob")
+    private Set<JobOpenHistory> jobHistorySet = new HashSet<>();
 }
