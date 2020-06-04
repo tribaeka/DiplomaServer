@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://35.228.149.66:80")
 @RestController
 @RequestMapping("job")
 public class JobController {
